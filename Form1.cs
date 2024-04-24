@@ -14,6 +14,7 @@ namespace RedDwarf
     {
         public Form1()
         {
+
             InitializeComponent();
         }
     }
