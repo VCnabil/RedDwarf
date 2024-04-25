@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using RedDwarf.RedAwarf.UI;
 
 namespace RedDwarf
 {
@@ -17,19 +18,27 @@ namespace RedDwarf
       
         public Form1()
         {
-
             InitializeComponent();
             label2_JackSerial.Text = "Initial Test";
             label3_JackFirm.Text = "Initial Test";
             btn_YesAuto.Click += Btn_YesAuto_Click;
             btn_NoManual.Click += Btn_NoAuto_Click;
-            lstCOMPorts.DoubleClick += lstCOMPorts_DoubleClick;   
-          
+            lstCOMPorts.DoubleClick += lstCOMPorts_DoubleClick;
+            lstCOMPorts.Visible = false;
+            grouptests.Visible = false;
+
+            button_NewTestForm.Click += (sender, e) =>
+            {
+                //NewTestForm newTestForm = new NewTestForm();
+                //newTestForm.Show();
+                testSectionForm testSectionForm = new testSectionForm();
+                testSectionForm.Show();
+            };
 
             MNGR_COMMBIV.Instance.aLabJackDataReceived += Instance_aLabJackDataReceived;
             MNGR_COMMBIV.Instance.aPortHasOpened_orCloesdEVENT += HeardPortHasOpenedOrClsed;
             MNGR_COMMBIV.Instance.FirstMEssageWasReceived += Instance_FirstMEssageWasReceived;
-            
+            this.FormClosing += new FormClosingEventHandler(FormClosing_Handler);
         }
 
      
@@ -41,10 +50,12 @@ namespace RedDwarf
             try
             {
                 this.Invoke(new Action(() => {
-                    label2_JackSerial.Text = "Lab SN:" + argSerial;
+                    label2_JackSerial.Text = "LabJack Serial Number : " + argSerial;
                     //only giveme the first 5 characters of the firmware
                     argFirmware = argFirmware.Substring(0, 5);
-                    label3_JackFirm.Text = "Lab Firmware" + argFirmware;
+                    label3_JackFirm.Text = "LabJack Firmware ver   : " + argFirmware;
+                    label0_conquestion.Text = "ALL Comunications Established";
+                    grouptests.Visible = true;
                 }));
             }
             catch (Exception ex)
@@ -58,7 +69,11 @@ namespace RedDwarf
         {
             Invoke(new Action(() => {
                 // Update UI controls safely
-                label1_MBIVversion.Text = argVersion;
+                label1_MBIVversion.Text = "MBIV Software version : "+argVersion;
+                btn_YesAuto.Visible = false;
+                btn_NoManual.Visible = false;
+                lstCOMPorts.Visible = false;
+                label0_conquestion.Text = "COM  Established";
             }));
         }
 
@@ -77,11 +92,18 @@ namespace RedDwarf
 
         private void Btn_NoAuto_Click(object sender, EventArgs e)
         {
+            btn_NoManual.Visible = false;
+            btn_YesAuto.Visible = false;
+            lstCOMPorts.Visible = true;
+            lstCOMPorts.Items.Clear();
             populatListbox();
         }
 
         private void Btn_YesAuto_Click(object sender, EventArgs e)
         {
+            lstCOMPorts.Visible = false;
+            btn_NoManual.Visible = false;
+            btn_YesAuto.Visible = false;
             MNGR_COMMBIV.Instance.OpenPort("COM7");
         }
         private void lstCOMPorts_DoubleClick(object sender, EventArgs e)

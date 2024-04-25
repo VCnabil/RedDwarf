@@ -14,9 +14,10 @@ namespace RedDwarf.RedAwarf._DataObjz.DataCOMM
 
         public void Set_all_DigitalsAtOnce(double argAlarm, double argLED1, double argLED2)
         {
-            _AlarmStateON = argAlarm > 0 ? true:false;
-            _LED1StaeOn = argLED1 > 0 ? true : false;
-            _LED2StaeOn = argLED2 > 0 ? true : false;
+            // 5.02 is on 7.5 is off
+            _AlarmStateON = argAlarm < 6 ? true:false;
+            _LED1StaeOn = argLED1 > 0 ? false : true;
+            _LED2StaeOn = argLED2 > 0 ? false : true;
         }
     
         public bool AlarmStateON

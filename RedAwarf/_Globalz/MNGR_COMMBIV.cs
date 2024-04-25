@@ -130,7 +130,6 @@ namespace RedDwarf.RedAwarf._Globalz
             commTimer.AutoReset = true;
             commTimer.Enabled = true;
             StartTimer();
-
         }
 
         public string[] GetAvailablePortNames()
