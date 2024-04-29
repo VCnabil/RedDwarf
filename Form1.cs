@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using RedDwarf.RedAwarf.UI;
+using RedDwarf.RedAwarf.UI.SectionsPages;
 
 namespace RedDwarf
 {
@@ -33,6 +34,14 @@ namespace RedDwarf
                 //newTestForm.Show();
                 testSectionForm testSectionForm = new testSectionForm();
                 testSectionForm.Show();
+            };
+
+            btn_Section3ain.Click += (sender, e) =>
+            {
+                //NewTestForm newTestForm = new NewTestForm();
+                //newTestForm.Show();
+                Section3_AIN section3ainForm = new Section3_AIN();
+                section3ainForm.Show();
             };
 
             MNGR_COMMBIV.Instance.aLabJackDataReceived += Instance_aLabJackDataReceived;

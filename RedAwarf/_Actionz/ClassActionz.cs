@@ -8,57 +8,102 @@ namespace RedDwarf.RedAwarf._Actionz
 {
     public class ClassActionz
     {
-        public async Task PerformTestActionAsync(TESTAction arg_Testaction)
-        {
-            WriteToDevice(arg_Testaction.ValueToWrite);
-            await Task.Delay(arg_Testaction.WaitTimeBeforeRead);
+        public delegate void WriteAction(string value);
+        public delegate bool ReadAction(string parameter);
 
-            var startTime = DateTime.Now;
-            while ((DateTime.Now - startTime).TotalMilliseconds < arg_Testaction.ReadDuration)
+        public async Task<bool> PerformTestActionAsync(TESTAction action, WriteAction write, ReadAction read)
+        {
+            write(action.ValueToWrite);
+            await Task.Delay(action.WaitTimeBeforeRead);
+            bool readValue = read(action.DeviceName);
+            return readValue == action.ExpectedState;
+        }
+
+        public async Task RunTestAsync(TESTTest test, WriteAction write, ReadAction read)
+        {
+            foreach (var action in test.TESTActions)
             {
-                double readValue = ReadFromDevice();
-                arg_Testaction.ReadValues.Add(readValue);
-                await Task.Delay(100); // Adjust based on expected frequency of reading values
+                bool result = await PerformTestActionAsync(action, write, read);
+                action.Result = result;
             }
-
-            arg_Testaction.Result = EvaluateAction(arg_Testaction);
-        }
-
-        private void WriteToDevice(string value)
-        {
-            // Example: Log writing to device for debugging
-            Console.WriteLine($"Writing '{value}' to device");
-            // Add actual device communication logic here
-        }
-
-        private double ReadFromDevice()
-        {
-            // Simulate reading from device
-            return new Random().NextDouble() * 100; // Random value between 0 and 100
-        }
-
-        private bool EvaluateAction(TESTAction srg_TESTAction)
-        {
-            // Example evaluation criteria
-            var (min, max) = srg_TESTAction.MinMax;
-            srg_TESTAction.Result = srg_TESTAction.AverageValue >= 10 && srg_TESTAction.AverageValue <= 20 && min >= 0 && max <= 100;
-            return srg_TESTAction.Result;
-        }
-
-        public async Task RunTestAsync(TESTTest argTESTtest)
-        {
-            foreach (var testaction in argTESTtest.Actions)
-            {
-                await PerformTestActionAsync(testaction);
-            }
-
-            bool isTestPassed = argTESTtest.IsTestPassed;
+            bool isTestPassed = test.IsTestPassed;
             Console.WriteLine(isTestPassed ? "Test passed." : "Test failed.");
         }
+
+        public async Task RunLabJackTests()
+        {
+            double[] dacValues = { 0.0, 2.5, 5.0 };
+            int[] channels = Enumerable.Range(1, 17).ToArray();  // Channels 1 to 17
+
+            foreach (var dac in dacValues)
+            {
+                foreach (var channel in channels)
+                {
+                    var action = new LabJackTestAction
+                    {
+                        Channel = channel,
+                        DacValue = dac,
+                        ExpectedValues = GetExpectedValues(channel, dac)
+                    };
+
+                    // Send command to LabJack
+                    WriteCommand(action.Channel, action.DacValue);
+                    await Task.Delay(4000); // Wait for the system to stabilize
+
+                    // Start measuring
+                    var startTime = DateTime.Now;
+                    while ((DateTime.Now - startTime).TotalMilliseconds < 1200)
+                    {
+                        action.Measurements.Add(Read_getChanMeasurement(action.Channel));
+                        await Task.Delay(100); // Delay between measurements
+                    }
+
+                    // Evaluate the results
+                    var (measuredMin, measuredMax) = (action.Measurements.Min(), action.Measurements.Max());
+                    action.Result = measuredMin >= action.ExpectedValues.ExpectedMin &&
+                                    measuredMax <= action.ExpectedValues.ExpectedMax;
+
+                    // Log or update UI with the result
+                    LogResult(action);
+                }
+            }
+        }
+
+        private (double ExpectedMin, double ExpectedMax) GetExpectedValues(int channel, double dacValue)
+        {
+            // Define logic to determine expected min/max based on channel and DAC value
+            // Example:
+            return (0.1, 4.9);  // Placeholder values
+        }
+
+        private void WriteCommand(int channel, double dacValue)
+        {
+            // Implement the method to send a command to the LabJack device
+        }
+
+        private double Read_getChanMeasurement(int channel)
+        {
+            // Implement the method to read a measurement from the LabJack device
+            return new Random().NextDouble() * 5;  // Simulated reading, replace with actual device reading
+        }
+
+        private void LogResult(LabJackTestAction action)
+        {
+            // Implement a method to log or display the results
+            Console.WriteLine($"Channel: {action.Channel}, DAC: {action.DacValue}, Result: {action.Result}");
+        }
+
+
+
+
+
+
     }
 
     public class TESTAction
     {
+        public string DeviceName { get; set; }
+        public bool ExpectedState { get; set; }
         public string ValueToWrite { get; set; }
         public int WaitTimeBeforeRead { get; set; }
         public int ReadDuration { get; set; }
@@ -68,19 +113,30 @@ namespace RedDwarf.RedAwarf._Actionz
         public bool Result { get; set; }
     }
 
+
+    public class LabJackTestAction
+    {
+        public int Channel { get; set; }
+        public double DacValue { get; set; }
+        public List<double> Measurements { get; set; } = new List<double>();
+        public (double ExpectedMin, double ExpectedMax) ExpectedValues { get; set; }
+        public bool Result { get; set; }
+    }
+
+
     public class TESTTest
     {
-        public List<TESTAction> Actions { get; set; }
-        public bool IsTestPassed => Actions.All(a => a.Result);
+        public List<TESTAction> TESTActions { get; set; }
+        public bool IsTestPassed => TESTActions.All(a => a.Result);
 
         public TESTTest()
         {
-            Actions = new List<TESTAction>();
+            TESTActions = new List<TESTAction>();
         }
 
         public void AddAction(TESTAction action)
         {
-            Actions.Add(action);
+            TESTActions.Add(action);
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using LabJack;
+using RedDwarf.RedAwarf._Actionz;
 using RedDwarf.RedAwarf._DataObjz.DataCOMM;
 using RedDwarf.RedAwarf._Globalz;
 using System;
@@ -26,8 +27,125 @@ namespace RedDwarf.RedAwarf.UI
             InitializeComponent();
             MNGR_COMMBIV.Instance.TimerElapsed += Instance_TimerElapsed;
             this.FormClosing += new FormClosingEventHandler(FormClosing_Handler);
+            //  btn_startTest.Click += async (sender, e) => await StartTestSequence();
+            btn_startTest.Click += btn_startTest_Click;
+        }
+        private void btn_startTest_Click(object sender, EventArgs e)
+        {
+            StartTestSequence().ConfigureAwait(false);
+        }
+        private async Task StartTestSequence()
+        {
+            var test = new TESTTest();
+            // Define your actions
+            test.TESTActions.Add(new TESTAction { DeviceName = "LED1", ValueToWrite = "LED1_ON", WaitTimeBeforeRead = 4000, ExpectedState = true });
+            test.TESTActions.Add(new TESTAction { DeviceName = "LED1", ValueToWrite = "LED1_OFF", WaitTimeBeforeRead = 1000, ExpectedState = false });
+            test.TESTActions.Add(new TESTAction { DeviceName = "LED2", ValueToWrite = "LED2_ON", WaitTimeBeforeRead = 4000, ExpectedState = true });
+            test.TESTActions.Add(new TESTAction { DeviceName = "LED2", ValueToWrite = "LED2_OFF", WaitTimeBeforeRead = 1000, ExpectedState = false });
+            test.TESTActions.Add(new TESTAction { DeviceName = "Alarm", ValueToWrite = "ALARM_ON", WaitTimeBeforeRead = 4000, ExpectedState = true });
+            test.TESTActions.Add(new TESTAction { DeviceName = "Alarm", ValueToWrite = "ALARM_OFF", WaitTimeBeforeRead = 1000, ExpectedState = false });
+
+            ClassActionz actionz = new ClassActionz();
+            await actionz.RunTestAsync(test, WriteToDevice, ReadDeviceState);
+
+            foreach (var action in test.TESTActions)
+            {
+                UpdateUIForResult(action.DeviceName, action.Result);
+            }
         }
 
+
+        private void WriteToDevice(string command)
+        {
+            // Implement actual device write logic here
+            switch (command)
+            {
+                case "LED1_ON":
+                    _dataTX.SetDIO(true, false, false, true); // Example: Turn LED1 ON
+                    break;
+                case "LED1_OFF":
+                    _dataTX.SetDIO(false, false, false, true); // Example: Turn LED1 OFF
+                    break;
+                 case "LED2_ON":
+                    _dataTX.SetDIO(false, true, false, true); // Example: Turn LED2 ON
+                    break;
+                    case "LED2_OFF":
+                    _dataTX.SetDIO(false, false, false, true); // Example: Turn LED2 OFF
+                    break;
+                    case "ALARM_ON":
+                    _dataTX.SetDIO(false, false, true, true); // Example: Turn ALARM ON
+                    break;
+                    case "ALARM_OFF":
+                    _dataTX.SetDIO(false, false, false, true); // Example: Turn ALARM OFF
+                    break;
+
+            }
+            MNGR_COMMBIV.Instance.WriteData__MBIV(_dataTX);
+        }
+
+
+        private bool ReadDeviceState(string deviceName)
+        {
+            // Handle device-specific read logic
+            _MAINLabjackObj = MNGR_COMMBIV.Instance.READDATA____JACK();
+           
+            switch (deviceName)
+            {
+                case "LED1":
+                    return _MAINLabjackObj.LED1StaeOn;
+                case "LED2":
+                    return _MAINLabjackObj.LED2StaeOn;
+                case "Alarm":
+                    return _MAINLabjackObj.AlarmStateON;
+                default:
+                    return false;
+            }
+        }
+
+
+        private void UpdateUIForResult(string deviceName, bool result)
+        {
+            Label lbl = null;
+            switch (deviceName)
+            {
+                case "LED1":
+                    lbl = lbl_LED1_TestResult;
+                    break;
+                case "LED2":
+                    lbl = lbl_LED2_TestResult;
+                    break;
+                case "Alarm":
+                    lbl = lbl_Alarm_TestResult;
+                    break;
+            }
+
+            if (lbl != null)
+            {
+                lbl.Text = result ? "Pass" : "Fail";
+                lbl.BackColor = result ? Color.SeaGreen : Color.Salmon;
+            }
+        }
+
+        private void UpdateUIForResultold(string deviceName, bool result)
+        {
+          switch (deviceName)
+            {
+                case "LED1":
+                    lbl_LED1_EIO0.BackColor = result ? Color.SeaGreen : Color.Salmon;
+                    lbl_LED1_EIO0.Text = result ? "LED1 Actual Output: ON" : "LED1 Actual Output: OFF";
+                    break;
+                case "LED2":
+                    lbl_LED2_EIO1.BackColor = result ? Color.SeaGreen : Color.Salmon;
+                    lbl_LED2_EIO1.Text = result ? "LED2 Actual Output: ON" : "LED2 Actual Output: OFF";
+                    break;
+                case "Alarm":
+                    lbl_Alarm_AIN0.BackColor = result ? Color.SeaGreen : Color.Salmon;
+                    lbl_Alarm_AIN0.Text = result ? "Alarm: ON" : "Alarm: OFF";
+                    break;
+            }
+
+        }
+       
         private void loopTimer_Tick(object sender, EventArgs e)
         {
 
@@ -66,11 +184,15 @@ namespace RedDwarf.RedAwarf.UI
                 cnt_debug = 0;
             }
             label_debug.Text = "ticks " + cnt_debug;
-            localWriteData();
+            //  localWriteData();
 
-            localReadData();
+            // localReadData();
 
+            showmeLabjackvals();
 
+        }
+        void showmeLabjackvals()
+        {
             string debugstr = MNGR_COMMBIV.Instance.AINs_values[0] + " " + MNGR_COMMBIV.Instance.AINs_values[1] + " " + MNGR_COMMBIV.Instance.AINs_values[2] + " " + MNGR_COMMBIV.Instance.AINs_values[3];
             lbl_helper.Text = debugstr;
         }
@@ -125,6 +247,8 @@ namespace RedDwarf.RedAwarf.UI
         {
             isFormActive = false; // Set form as inactive
             MNGR_COMMBIV.Instance.TimerElapsed -= Instance_TimerElapsed;
+            btn_startTest.Click -= btn_startTest_Click;
+
         }
     }
 }

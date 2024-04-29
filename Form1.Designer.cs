@@ -36,7 +36,7 @@
             this.label2_JackSerial = new System.Windows.Forms.Label();
             this.label3_JackFirm = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_Section3ain = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.grouptests = new System.Windows.Forms.GroupBox();
             this.button_NewTestForm = new System.Windows.Forms.Button();
@@ -127,16 +127,16 @@
             this.button1.Text = "Section4 DO";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_Section3ain
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(15, 84);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(233, 51);
-            this.button2.TabIndex = 659;
-            this.button2.Text = "Section3 ain";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_Section3ain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Section3ain.Location = new System.Drawing.Point(15, 84);
+            this.btn_Section3ain.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Section3ain.Name = "btn_Section3ain";
+            this.btn_Section3ain.Size = new System.Drawing.Size(233, 51);
+            this.btn_Section3ain.TabIndex = 659;
+            this.btn_Section3ain.Text = "Section3 ain";
+            this.btn_Section3ain.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -152,7 +152,7 @@
             // grouptests
             // 
             this.grouptests.Controls.Add(this.button_NewTestForm);
-            this.grouptests.Controls.Add(this.button2);
+            this.grouptests.Controls.Add(this.btn_Section3ain);
             this.grouptests.Controls.Add(this.button3);
             this.grouptests.Controls.Add(this.button1);
             this.grouptests.Location = new System.Drawing.Point(12, 187);
@@ -204,7 +204,7 @@
         private System.Windows.Forms.Label label2_JackSerial;
         private System.Windows.Forms.Label label3_JackFirm;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_Section3ain;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox grouptests;
         private System.Windows.Forms.Button button_NewTestForm;

@@ -87,11 +87,23 @@
     <Compile Include="RedAwarf\UI\NewTestForm.Designer.cs">
       <DependentUpon>NewTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RedAwarf\UI\SectionsPages\Section3_AIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RedAwarf\UI\SectionsPages\Section3_AIN.Designer.cs">
+      <DependentUpon>Section3_AIN.cs</DependentUpon>
+    </Compile>
     <Compile Include="RedAwarf\UI\SectionsPages\Section4_DO.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RedAwarf\UI\SectionsPages\Section4_DO.Designer.cs">
       <DependentUpon>Section4_DO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RedAwarf\UI\SectionsPages\Section5_DI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RedAwarf\UI\SectionsPages\Section5_DI.Designer.cs">
+      <DependentUpon>Section5_DI.cs</DependentUpon>
     </Compile>
     <Compile Include="RedAwarf\UI\testSectionForm.cs">
       <SubType>Form</SubType>
@@ -119,6 +131,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RedAwarf\UI\SectionsPages\Section3_AIN.resx">
+      <DependentUpon>Section3_AIN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RedAwarf\UI\SectionsPages\Section4_DO.resx">
       <DependentUpon>Section4_DO.cs</DependentUpon>
     </EmbeddedResource>
