@@ -101,7 +101,7 @@ namespace RedDwarf.RedAwarf._Globalz
         LABJAK_RX _myLABJK_RX;
 
 
-
+        private DateTime lastReceivedTime = DateTime.MinValue;
         private MNGR_COMMBIV() {
             INIT_CONSTRUCTOR_COMM();
            // INIT_CON_LABJACK();
@@ -237,14 +237,26 @@ namespace RedDwarf.RedAwarf._Globalz
                     bool isChecksumValid = Helpers_Vealidate_Checksum(latestComplete_Validated_MessageBody, latestCompleteMessageExtratedCHecksum);
                     if (isChecksumValid)
                     {
+                        DateTime currentTime = DateTime.Now;
+                        TimeSpan interval = TimeSpan.Zero;
+
+                        if (lastReceivedTime != DateTime.MinValue)
+                        {
+                            interval = currentTime - lastReceivedTime;
+                        }
+                        lastReceivedTime = currentTime;
+
                         //     EventsManagerLib.Call_LogConsole("4. Last complete message: " + mostRecentMessage + " has a valid checksum");
-                        _myMBIV_RX.Update_INTarra_FromCommaDelimitedString(latestComplete_Validated_MessageBody);
+                        _myMBIV_RX.Update_IntArray_withTimeDate(latestComplete_Validated_MessageBody, currentTime, interval );
                         _foundMBIV_softwareVersion = _myMBIV_RX.Version;
                         if (!_FirstMessgeWasRead) {
                             _FirstMessgeWasRead= true;
                             OnFirstMEssageWasReceived(_foundMBIV_softwareVersion);
                             INIT_CON_LABJACK();
                         }
+
+                      
+
                         OnMessageReceived(_myMBIV_RX);
                     }
                     else

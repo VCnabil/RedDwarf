@@ -1,6 +1,6 @@
-﻿namespace RedDwarf.RedAwarf.UI.SectionsPages
+﻿namespace RedDwarf.RedAwarf.UI
 {
-    partial class Section3_AIN
+    partial class testAIN
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btn_startTest = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label_0_3 = new System.Windows.Forms.Label();
             this.label_7_3 = new System.Windows.Forms.Label();
@@ -116,20 +117,19 @@
             this.lbl_AD13 = new System.Windows.Forms.Label();
             this.lbl_AD12 = new System.Windows.Forms.Label();
             this.LBL_AD7 = new System.Windows.Forms.Label();
-            this.btn_startTest = new System.Windows.Forms.Button();
-            this.btn_testFloat = new System.Windows.Forms.Button();
-            this.lbl_curLVL = new System.Windows.Forms.Label();
-            this.lbl_curAIN = new System.Windows.Forms.Label();
-            this.lbl_regAIN = new System.Windows.Forms.Label();
-            this.lbl_regLVL = new System.Windows.Forms.Label();
-            this.lbl_RX = new System.Windows.Forms.Label();
-            this.btn_test0v = new System.Windows.Forms.Button();
-            this.btn_test2v = new System.Windows.Forms.Button();
-            this.btn_test5v = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btn_startTest
+            // 
+            this.btn_startTest.Location = new System.Drawing.Point(1295, 10);
+            this.btn_startTest.Name = "btn_startTest";
+            this.btn_startTest.Size = new System.Drawing.Size(162, 87);
+            this.btn_startTest.TabIndex = 678;
+            this.btn_startTest.Text = "button1";
+            this.btn_startTest.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -150,10 +150,10 @@
             this.groupBox4.Controls.Add(this.label_14_3);
             this.groupBox4.Controls.Add(this.label_16_3);
             this.groupBox4.Controls.Add(this.label_15_3);
-            this.groupBox4.Location = new System.Drawing.Point(1123, 152);
+            this.groupBox4.Location = new System.Drawing.Point(945, 45);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(429, 1244);
-            this.groupBox4.TabIndex = 641;
+            this.groupBox4.Size = new System.Drawing.Size(230, 1293);
+            this.groupBox4.TabIndex = 677;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "floating (Off)";
             // 
@@ -397,10 +397,10 @@
             this.groupBox2.Controls.Add(this.label_12_1);
             this.groupBox2.Controls.Add(this.label_16_1);
             this.groupBox2.Controls.Add(this.label_11_1);
-            this.groupBox2.Location = new System.Drawing.Point(201, 152);
+            this.groupBox2.Location = new System.Drawing.Point(242, 42);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(681, 1247);
-            this.groupBox2.TabIndex = 640;
+            this.groupBox2.Size = new System.Drawing.Size(681, 1296);
+            this.groupBox2.TabIndex = 676;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "          0v                                      2.5v                           " +
     "5.0v";
@@ -985,10 +985,10 @@
             this.groupBox1.Controls.Add(this.lbl_AD13);
             this.groupBox1.Controls.Add(this.lbl_AD12);
             this.groupBox1.Controls.Add(this.LBL_AD7);
-            this.groupBox1.Location = new System.Drawing.Point(12, 144);
+            this.groupBox1.Location = new System.Drawing.Point(53, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 1255);
-            this.groupBox1.TabIndex = 639;
+            this.groupBox1.Size = new System.Drawing.Size(169, 1304);
+            this.groupBox1.TabIndex = 675;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RX values AIN";
             // 
@@ -1248,116 +1248,17 @@
             this.LBL_AD7.Text = "AD07: 1000";
             this.LBL_AD7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_startTest
-            // 
-            this.btn_startTest.Location = new System.Drawing.Point(1328, 59);
-            this.btn_startTest.Name = "btn_startTest";
-            this.btn_startTest.Size = new System.Drawing.Size(162, 87);
-            this.btn_startTest.TabIndex = 674;
-            this.btn_startTest.Text = "button1";
-            this.btn_startTest.UseVisualStyleBackColor = true;
-            // 
-            // btn_testFloat
-            // 
-            this.btn_testFloat.Location = new System.Drawing.Point(904, 108);
-            this.btn_testFloat.Name = "btn_testFloat";
-            this.btn_testFloat.Size = new System.Drawing.Size(162, 38);
-            this.btn_testFloat.TabIndex = 675;
-            this.btn_testFloat.Text = "test floating";
-            this.btn_testFloat.UseVisualStyleBackColor = true;
-            // 
-            // lbl_curLVL
-            // 
-            this.lbl_curLVL.AutoSize = true;
-            this.lbl_curLVL.Location = new System.Drawing.Point(7, 46);
-            this.lbl_curLVL.Name = "lbl_curLVL";
-            this.lbl_curLVL.Size = new System.Drawing.Size(28, 25);
-            this.lbl_curLVL.TabIndex = 676;
-            this.lbl_curLVL.Text = "lv";
-            // 
-            // lbl_curAIN
-            // 
-            this.lbl_curAIN.AutoSize = true;
-            this.lbl_curAIN.Location = new System.Drawing.Point(12, 71);
-            this.lbl_curAIN.Name = "lbl_curAIN";
-            this.lbl_curAIN.Size = new System.Drawing.Size(41, 25);
-            this.lbl_curAIN.TabIndex = 677;
-            this.lbl_curAIN.Text = "ani";
-            // 
-            // lbl_regAIN
-            // 
-            this.lbl_regAIN.AutoSize = true;
-            this.lbl_regAIN.Location = new System.Drawing.Point(164, 71);
-            this.lbl_regAIN.Name = "lbl_regAIN";
-            this.lbl_regAIN.Size = new System.Drawing.Size(77, 25);
-            this.lbl_regAIN.TabIndex = 679;
-            this.lbl_regAIN.Text = "regAIN";
-            // 
-            // lbl_regLVL
-            // 
-            this.lbl_regLVL.AutoSize = true;
-            this.lbl_regLVL.Location = new System.Drawing.Point(164, 46);
-            this.lbl_regLVL.Name = "lbl_regLVL";
-            this.lbl_regLVL.Size = new System.Drawing.Size(70, 25);
-            this.lbl_regLVL.TabIndex = 678;
-            this.lbl_regLVL.Text = "reg lvl";
-            // 
-            // lbl_RX
-            // 
-            this.lbl_RX.AutoSize = true;
-            this.lbl_RX.Location = new System.Drawing.Point(7, 9);
-            this.lbl_RX.Name = "lbl_RX";
-            this.lbl_RX.Size = new System.Drawing.Size(36, 25);
-            this.lbl_RX.TabIndex = 680;
-            this.lbl_RX.Text = "rx:";
-            // 
-            // btn_test0v
-            // 
-            this.btn_test0v.Location = new System.Drawing.Point(201, 108);
-            this.btn_test0v.Name = "btn_test0v";
-            this.btn_test0v.Size = new System.Drawing.Size(162, 38);
-            this.btn_test0v.TabIndex = 681;
-            this.btn_test0v.Text = "test 0.0 V";
-            this.btn_test0v.UseVisualStyleBackColor = true;
-            // 
-            // btn_test2v
-            // 
-            this.btn_test2v.Location = new System.Drawing.Point(462, 108);
-            this.btn_test2v.Name = "btn_test2v";
-            this.btn_test2v.Size = new System.Drawing.Size(162, 38);
-            this.btn_test2v.TabIndex = 682;
-            this.btn_test2v.Text = "test 2.5 V";
-            this.btn_test2v.UseVisualStyleBackColor = true;
-            // 
-            // btn_test5v
-            // 
-            this.btn_test5v.Location = new System.Drawing.Point(677, 108);
-            this.btn_test5v.Name = "btn_test5v";
-            this.btn_test5v.Size = new System.Drawing.Size(162, 38);
-            this.btn_test5v.TabIndex = 683;
-            this.btn_test5v.Text = "test 5.0 V";
-            this.btn_test5v.UseVisualStyleBackColor = true;
-            // 
-            // Section3_AIN
+            // testAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1983, 1411);
-            this.Controls.Add(this.btn_test5v);
-            this.Controls.Add(this.btn_test2v);
-            this.Controls.Add(this.btn_test0v);
-            this.Controls.Add(this.lbl_RX);
-            this.Controls.Add(this.lbl_regAIN);
-            this.Controls.Add(this.lbl_regLVL);
-            this.Controls.Add(this.lbl_curAIN);
-            this.Controls.Add(this.lbl_curLVL);
-            this.Controls.Add(this.btn_testFloat);
             this.Controls.Add(this.btn_startTest);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Section3_AIN";
-            this.Text = "Section3_AIN";
+            this.Name = "testAIN";
+            this.Text = "testAIN";
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1365,12 +1266,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Button btn_startTest;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label_0_3;
         private System.Windows.Forms.Label label_7_3;
@@ -1459,15 +1360,5 @@
         private System.Windows.Forms.Label lbl_AD13;
         private System.Windows.Forms.Label lbl_AD12;
         private System.Windows.Forms.Label LBL_AD7;
-        private System.Windows.Forms.Button btn_startTest;
-        private System.Windows.Forms.Button btn_testFloat;
-        private System.Windows.Forms.Label lbl_curLVL;
-        private System.Windows.Forms.Label lbl_curAIN;
-        private System.Windows.Forms.Label lbl_regAIN;
-        private System.Windows.Forms.Label lbl_regLVL;
-        private System.Windows.Forms.Label lbl_RX;
-        private System.Windows.Forms.Button btn_test0v;
-        private System.Windows.Forms.Button btn_test2v;
-        private System.Windows.Forms.Button btn_test5v;
     }
 }

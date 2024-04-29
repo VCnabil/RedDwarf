@@ -105,6 +105,18 @@
     <Compile Include="RedAwarf\UI\SectionsPages\Section5_DI.Designer.cs">
       <DependentUpon>Section5_DI.cs</DependentUpon>
     </Compile>
+    <Compile Include="RedAwarf\UI\SectionsPages\WTFform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RedAwarf\UI\SectionsPages\WTFform.Designer.cs">
+      <DependentUpon>WTFform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RedAwarf\UI\testAIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RedAwarf\UI\testAIN.Designer.cs">
+      <DependentUpon>testAIN.cs</DependentUpon>
+    </Compile>
     <Compile Include="RedAwarf\UI\testSectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RedAwarf\UI\SectionsPages\Section4_DO.resx">
       <DependentUpon>Section4_DO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RedAwarf\UI\SectionsPages\WTFform.resx">
+      <DependentUpon>WTFform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RedAwarf\UI\testAIN.resx">
+      <DependentUpon>testAIN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RedAwarf\UI\testSectionForm.resx">
       <DependentUpon>testSectionForm.cs</DependentUpon>

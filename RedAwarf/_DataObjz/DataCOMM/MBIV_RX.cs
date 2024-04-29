@@ -605,16 +605,22 @@ namespace RedDwarf.RedAwarf._DataObjz.DataCOMM
         }
 
         #endregion
-
-
-
+        DateTime _dateTimeReceived;
+        TimeSpan argintervalSinceLastRX;
 
         int[] __all_ains;
         int[] __allDIs_ordered_xfer_dk_clutch_ap_adpi;
         int[] __all_FBKs_ordered_Noz_Buk_Ints;
         int[] __all_Faults_ordered_Noz_Buk_Ints;
 
-        public void Update_INTarra_FromCommaDelimitedString(string argBody)
+
+        public void Update_IntArray_withTimeDate(string argBody, DateTime argDateTimeReceived, TimeSpan arg_timeSinceLast) { 
+        
+            _dateTimeReceived = argDateTimeReceived;
+            argintervalSinceLastRX = arg_timeSinceLast;
+            Update_INTarra_FromCommaDelimitedString(argBody);
+        }
+        private void Update_INTarra_FromCommaDelimitedString(string argBody)
         {
             //the argBody  "$VCIA,1.11_Rev5712,4049,4062,4062,4063,4038,4037,4058,4054,4053,4056,4050,4041,4043,4056,4055,4063 ,511,1,6,26,23,46,32,25,23,63"
             //split the string into an array of strings using the comma as the delimiter
@@ -824,5 +830,13 @@ namespace RedDwarf.RedAwarf._DataObjz.DataCOMM
 
             __all_Faults_ordered_Noz_Buk_Ints = new int[6];
         }
+
+        //override ToString method
+        public override string ToString()
+        {
+            return string.Format("MBIV_RX: {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}, {18}, {19}, {20}, {21}, {22}, {23}, {24}, {25}, {26}, {27}", _version, _ain1, _ain2, _ain3, _ain4, _ain5, _ain6, _ain7, _ain8, _ain9, _ain10, _ain11, _ain12, _ain13, _ain14, _ain15, _ain16, _gp0_sclutch, _gp1_portAP, _gp2_stbdAP, _gp3_Dktr1, _gp4_Dktr2, _gp5_Xfer1, _gp6_Xfer2, _gp7_pclutch, _apdi8, _mbiv_Serial_Fault, _apInput, _pnoz_FDBK, _snoz_FDBK, _pint_FDBK, _sbuck_FDBK, _pbuck_FDBK, _sint_FDBK, _pb_fault, _si_fault, _pi_fault, _sb_fault, _pn_fault, _sn_fault);
+        }
+
+
     }
 }
