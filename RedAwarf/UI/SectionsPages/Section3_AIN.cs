@@ -1,4 +1,5 @@
 ﻿using RedDwarf.RedAwarf._DataObjz.DataCOMM;
+using RedDwarf.RedAwarf._DataObjz.DataTestReport;
 using RedDwarf.RedAwarf._Globalz;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,12 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
     {
 
 
-        int _MAX_AINS = 3;
+        int _MAX_AINS = 4; //full =16 , 2
+
         int _MAX_LVLS = 1;
-        int PAuseDelays = 100;
+ 
         int WaitToTakeEffect = 100;
-        int longWaiteffect = 500;
-        int targetSamples = 6;
+        int targetSamples = 5;
         private System.Windows.Forms.Timer TimerForLoop = new System.Windows.Forms.Timer();
         private List<int> measurementValues = new List<int>();  // List to store measurement values for each turn
 
@@ -36,27 +37,34 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         int _FloaterIndexTOAVOID = 16;
         int _ACTIVEAIN = 1;
         private int _ACTIVELEVEL = 0;
-        int indexFloating = 8;
-        int _minFloating, _maxFloating;
+
+        DATA_CELL_MEASURES[,] _dataCellMeasures;
+        DATA_CELL_MEASURES[] _floatingCellsMEasures;
 
         MBIV_RX _myCopyofDataMBIV;
-        double _RAW_DACTOSEND=0.0;
-        int collectedSamples = 0;
- 
 
-        //private bool canReadCleanData = false;
-        private bool measuringChannel16 = false;
+        int _FULL_MAX_AINS = 17;
+        int _FULL_MAX_LVLS = 2;
+
         private List<int>[] dataFloatingReadingsArray;
-       // AINtestSTATE aINtestSTATE = AINtestSTATE.SHOULDNOTREAD;
         public Section3_AIN()
         {
             InitializeComponent();
+
+            _FULL_MAX_AINS = _MAX_AINS + 1;
+            _FULL_MAX_LVLS = _MAX_LVLS + 1;
+
             dataFloatingReadingsArray = new List<int>[17]; // Initialize the array for 17 lists
             for (int i = 0; i < dataFloatingReadingsArray.Length; i++)
             {
                 dataFloatingReadingsArray[i] = new List<int>(); // Initialize each list in the array
             }
 
+            _floatingCellsMEasures = new DATA_CELL_MEASURES[_FULL_MAX_AINS];
+            for (int i = 0; i < _FULL_MAX_AINS; i++)
+            {
+                _floatingCellsMEasures[i] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(3), Helpers.GetExpectedMaxValue(3));
+            }
             TimerForLoop.Interval = 280;
             TimerForLoop.Tick += timer_100_Tick;
             TimerForLoop.Start();
@@ -82,6 +90,17 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
                 { label_15_0, label_15_1, label_15_2 },
                 { label_16_0, label_16_1, label_16_2 }
              };
+
+
+
+            _dataCellMeasures = new DATA_CELL_MEASURES[_FULL_MAX_AINS, _FULL_MAX_LVLS];
+            for (int i = 0; i < _FULL_MAX_AINS; i++)
+            {
+                for (int j = 0; j < _FULL_MAX_LVLS; j++)
+                {
+                    _dataCellMeasures[i, j] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(j), Helpers.GetExpectedMaxValue(j));
+                }
+            }
             floatingColumn = new Label[] { label_0_3, label_1_3, label_2_3, label_3_3, label_4_3, label_5_3, label_6_3, label_7_3, label_8_3, label_9_3, label_10_3, label_11_3, label_12_3, label_13_3, label_14_3, label_15_3, label_16_3 };
             _ints_ADOS = new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
             btn_startTest.Click += btn_Start_Click;
@@ -96,7 +115,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             _ACTIVELEVEL = _MAX_LVLS;
             MNGR_COMMBIV.Instance.WRITEDATA_MUXDAC(_ACTIVEAIN, _ACTIVELEVEL);
             btn_testFloat.BackColor = Color.Green;
-            await Task.Delay(PAuseDelays);
+            await Task.Delay(WaitToTakeEffect);
           //  aINtestSTATE = AINtestSTATE.MEASURING_BULK;
             
             await RunMeasurementProcess();
@@ -105,18 +124,56 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
         private async Task RunMeasurementProcess()
         {
-            // Finally, handle full array measurement
-          //  await Start_FULLARRAY_Measurement();
+      
+          await Start_FULLARRAY_Measurement();
             btn_testFloat.BackColor = Color.CadetBlue;
          await StartMeasuring__AllFloatersLessLAst();
             btn_testFloat.BackColor = Color.Yellow;
           await StartMeasuring__lastFloater();
+            btn_testFloat.BackColor = Color.Purple;
+           await Start_Validate_Measurement();
+            btn_testFloat.BackColor = Color.Blue;
+        }
+
+
+        private async Task Start_Validate_Measurement()
+        {
+       
+            await Task.Delay(WaitToTakeEffect);
+
+            for (int i = 1; i <= _MAX_AINS; i++)
+            {
+                for (int j = 0; j <= _MAX_LVLS; j++)
+                {
+                    if (_dataCellMeasures[i, j].MinValue < Helpers.GetExpectedMinValue(j) || _dataCellMeasures[i, j].MaxValue > Helpers.GetExpectedMaxValue(j))
+                    {
+                        _labels2D_minmax[i, j].BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        _labels2D_minmax[i, j].BackColor = Color.Green;
+                    }
+                }
+            }   
+
+            for (int i = 1; i <= _MAX_AINS; i++)
+            {
+                if (_floatingCellsMEasures[i].MinValue < Helpers.GetExpectedMinValue(3) || _floatingCellsMEasures[i].MaxValue > Helpers.GetExpectedMaxValue(3))
+                {
+                    floatingColumn[i].BackColor = Color.Red;
+                }
+                else
+                {
+                    floatingColumn[i].BackColor = Color.Green;
+                }
+            }
+           
         }
         void ClearAll_Floaters()
         {
             for (int i = 1; i < _FloaterIndexTOAVOID; i++)
             {
-                dataFloatingReadingsArray[i].Clear(); // Clear existing data
+                dataFloatingReadingsArray[i].Clear();  
             }
         }
 
@@ -141,7 +198,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         }
         private async Task CollectData_FULLARRAY(int curAIN, int powerLevel, int numSamples)
         {
-            dataFloatingReadingsArray[curAIN].Clear(); // Clear existing data
+            dataFloatingReadingsArray[curAIN].Clear(); // Clear existing exact data
             while (dataFloatingReadingsArray[curAIN].Count < numSamples)
             {
                 await Task.Delay(TimerForLoop.Interval); // Assume data is collected each timer tick
@@ -167,8 +224,12 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
                 // Update the corresponding label in the 2D array
                 _labels2D_minmax[index, powerLevel].Text = $"i:{min} a: {max} v: {average:N2}";
+                _dataCellMeasures[index, powerLevel].MinValue = min;
+                _dataCellMeasures[index, powerLevel].MaxValue = max;
+                _dataCellMeasures[index, powerLevel].AverageValue = average;
+                _dataCellMeasures[index, powerLevel].SamplesTaken = readings.Count;
             }
-            dataFloatingReadingsArray[index].Clear(); // Clear existing data after processing
+            dataFloatingReadingsArray[index].Clear(); // Clear existing exact data after processing
         }
         #endregion
 
@@ -181,7 +242,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
             _FloaterIndexTOAVOID = _MAX_AINS;
             MNGR_COMMBIV.Instance.WRITEDATA_CHAN_LVL(_FloaterIndexTOAVOID, 0, false);
-            await Task.Delay(longWaiteffect);
+            await Task.Delay(WaitToTakeEffect);
 
             await CollectDataFor_Floaters(targetSamples);
 
@@ -223,6 +284,10 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
                     // Update the corresponding label in the 2D array
                     floatingColumn[i].Text = $"i:{min} a: {max} v: {average:N2}";
+                    _floatingCellsMEasures[i].MinValue = min;
+                    _floatingCellsMEasures[i].MaxValue = max;
+                    _floatingCellsMEasures[i].AverageValue = average;
+                    _floatingCellsMEasures[i].SamplesTaken = readings.Count;
                 }
                 dataFloatingReadingsArray[i].Clear(); // Clear existing data after processing
             }
@@ -267,6 +332,10 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
                 // Update the corresponding label in the 2D array
                 floatingColumn[index].Text = $"i:{min} a: {max} v: {average:N2}";
+                _floatingCellsMEasures[index].MinValue = min;
+                _floatingCellsMEasures[index].MaxValue = max;
+                _floatingCellsMEasures[index].AverageValue = average;
+                _floatingCellsMEasures[index].SamplesTaken = readings.Count;
             }
             dataFloatingReadingsArray[index].Clear(); // Clear existing data after processing
         }

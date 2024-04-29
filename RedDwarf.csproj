@@ -127,12 +127,14 @@
     <Compile Include="RedAwarf\_DataObjz\DataCOMM\DATA_TX.cs" />
     <Compile Include="RedAwarf\_DataObjz\DataCOMM\LABJAK_RX.cs" />
     <Compile Include="RedAwarf\_DataObjz\DataCOMM\MBIV_RX.cs" />
+    <Compile Include="RedAwarf\_DataObjz\DataTestReport\DATA_ADOMeasures.cs" />
     <Compile Include="RedAwarf\_DataObjz\DataTestReport\DATA_TESTREPORT.cs" />
     <Compile Include="RedAwarf\_Globalz\EventsManagerLib.cs" />
     <Compile Include="RedAwarf\_Globalz\Helpers.cs" />
     <Compile Include="RedAwarf\_Globalz\MNGR_COMMBIV.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
