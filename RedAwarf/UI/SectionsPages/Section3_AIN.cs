@@ -15,6 +15,14 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 {
     public partial class Section3_AIN : Form
     {
+
+
+        int _MAX_AINS = 3;
+        int _MAX_LVLS = 1;
+        int PAuseDelays = 100;
+        int WaitToTakeEffect = 100;
+        int longWaiteffect = 500;
+        int targetSamples = 6;
         private System.Windows.Forms.Timer TimerForLoop = new System.Windows.Forms.Timer();
         private List<int> measurementValues = new List<int>();  // List to store measurement values for each turn
 
@@ -25,7 +33,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         Label[] floatingColumn;
         private bool allowedToFilterMinMax = true;
         int minValue, maxValue;
-        int _activeFloatingIndex = 16;
+        int _FloaterIndexTOAVOID = 16;
         int _ACTIVEAIN = 1;
         private int _ACTIVELEVEL = 0;
         int indexFloating = 8;
@@ -34,12 +42,12 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         MBIV_RX _myCopyofDataMBIV;
         double _RAW_DACTOSEND=0.0;
         int collectedSamples = 0;
-        int targetSamples = 100;
+ 
 
         //private bool canReadCleanData = false;
         private bool measuringChannel16 = false;
         private List<int>[] dataFloatingReadingsArray;
-        AINtestSTATE aINtestSTATE = AINtestSTATE.SHOULDNOTREAD;
+       // AINtestSTATE aINtestSTATE = AINtestSTATE.SHOULDNOTREAD;
         public Section3_AIN()
         {
             InitializeComponent();
@@ -81,14 +89,198 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             btn_testFloat.Click += btn_testFloat_Click;
         }
 
-        private void btn_testFloat_Click(object sender, EventArgs e)
+        private async  void btn_testFloat_Click(object sender, EventArgs e)
         {
+       //     aINtestSTATE = AINtestSTATE.SHOULDNOTREAD;
+            _ACTIVEAIN = _MAX_AINS;
+            _ACTIVELEVEL = _MAX_LVLS;
+            MNGR_COMMBIV.Instance.WRITEDATA_MUXDAC(_ACTIVEAIN, _ACTIVELEVEL);
+            btn_testFloat.BackColor = Color.Green;
+            await Task.Delay(PAuseDelays);
+          //  aINtestSTATE = AINtestSTATE.MEASURING_BULK;
             
+            await RunMeasurementProcess();
+            btn_testFloat.BackColor = Color.Red;
         }
+
+        private async Task RunMeasurementProcess()
+        {
+            // Finally, handle full array measurement
+          //  await Start_FULLARRAY_Measurement();
+            btn_testFloat.BackColor = Color.CadetBlue;
+         await StartMeasuring__AllFloatersLessLAst();
+            btn_testFloat.BackColor = Color.Yellow;
+          await StartMeasuring__lastFloater();
+        }
+        void ClearAll_Floaters()
+        {
+            for (int i = 1; i < _FloaterIndexTOAVOID; i++)
+            {
+                dataFloatingReadingsArray[i].Clear(); // Clear existing data
+            }
+        }
+
+
+        #region Full_ARRAY_MEASUREMENT
+        private async Task Start_FULLARRAY_Measurement()
+        {
+            ClearAll_Floaters();
+            for (int powerLevel = 0; powerLevel <= _MAX_LVLS; powerLevel++)
+            {
+                await Task.Delay(WaitToTakeEffect);
+                for (int curAIN = 1; curAIN <= _MAX_AINS; curAIN++)
+                {
+                    _ACTIVEAIN = curAIN;
+                    _ACTIVELEVEL = powerLevel;
+                    MNGR_COMMBIV.Instance.WRITEDATA_CHAN_LVL(_ACTIVEAIN, _ACTIVELEVEL, true);
+                    await Task.Delay(WaitToTakeEffect); // Wait for settings to take effect
+
+                    await CollectData_FULLARRAY(curAIN, powerLevel, targetSamples); 
+                }
+            }
+        }
+        private async Task CollectData_FULLARRAY(int curAIN, int powerLevel, int numSamples)
+        {
+            dataFloatingReadingsArray[curAIN].Clear(); // Clear existing data
+            while (dataFloatingReadingsArray[curAIN].Count < numSamples)
+            {
+                await Task.Delay(TimerForLoop.Interval); // Assume data is collected each timer tick
+                                                         // Simulation of data collection, actual implementation may vary
+                int reading = _ints_ADOS[curAIN];
+                dataFloatingReadingsArray[curAIN].Add(reading);
+
+            }
+            ProcessData_FULLARRAY(curAIN, powerLevel); // Process data after collection is done
+        }
+        private void ProcessData_FULLARRAY(int index, int powerLevel)
+        {
+            var readings = dataFloatingReadingsArray[index];
+            if (readings.Count > 2)
+            {
+                readings.Sort();
+                readings.RemoveAt(0); // Remove first
+                readings.RemoveAt(readings.Count - 1); // Remove last
+
+                int min = readings.Min();
+                int max = readings.Max();
+                double average = readings.Average();
+
+                // Update the corresponding label in the 2D array
+                _labels2D_minmax[index, powerLevel].Text = $"i:{min} a: {max} v: {average:N2}";
+            }
+            dataFloatingReadingsArray[index].Clear(); // Clear existing data after processing
+        }
+        #endregion
+
+        #region FLoaters
+
+
+        private async Task StartMeasuring__AllFloatersLessLAst()
+        {
+            ClearAll_Floaters();
+
+            _FloaterIndexTOAVOID = _MAX_AINS;
+            MNGR_COMMBIV.Instance.WRITEDATA_CHAN_LVL(_FloaterIndexTOAVOID, 0, false);
+            await Task.Delay(longWaiteffect);
+
+            await CollectDataFor_Floaters(targetSamples);
+
+        }
+        private async Task CollectDataFor_Floaters(int numSamples)
+        {
+
+            ClearAll_Floaters();
+
+
+            while (dataFloatingReadingsArray[_FloaterIndexTOAVOID - 1].Count < numSamples)
+            {
+                await Task.Delay(TimerForLoop.Interval);
+                for (int i = 1; i < _FloaterIndexTOAVOID; i++)
+                {
+
+                    int reading = _ints_ADOS[i];
+                    dataFloatingReadingsArray[i].Add(reading);
+
+                }
+            }
+
+            ProcessDataFloaters_UPTo(_FloaterIndexTOAVOID); // Process data after collection is done
+        }
+        private void ProcessDataFloaters_UPTo(int index)
+        {
+            for (int i = 1; i < index; i++)
+            {
+                var readings = dataFloatingReadingsArray[i];
+                if (readings.Count > 2)
+                {
+                    readings.Sort();
+                    readings.RemoveAt(0); // Remove first
+                    readings.RemoveAt(readings.Count - 1); // Remove last
+
+                    int min = readings.Min();
+                    int max = readings.Max();
+                    double average = readings.Average();
+
+                    // Update the corresponding label in the 2D array
+                    floatingColumn[i].Text = $"i:{min} a: {max} v: {average:N2}";
+                }
+                dataFloatingReadingsArray[i].Clear(); // Clear existing data after processing
+            }
+        }
+        #endregion
+
+        #region LAstFloater
+        private async Task StartMeasuring__lastFloater()
+        {
+            ClearAll_Floaters();
+          _FloaterIndexTOAVOID = _MAX_AINS;
+            MNGR_COMMBIV.Instance.WRITEDATA_CHAN_LVL(1, 0, false);
+            await Task.Delay(WaitToTakeEffect);
+            await CollectDataFor_LastFloater(targetSamples);
+        }
+        private async Task CollectDataFor_LastFloater(int numSamples)
+        {
+            dataFloatingReadingsArray[_FloaterIndexTOAVOID].Clear(); // Clear existing data
+            while (dataFloatingReadingsArray[_FloaterIndexTOAVOID].Count < numSamples)
+            {
+                await Task.Delay(TimerForLoop.Interval);
+                int reading = _ints_ADOS[_FloaterIndexTOAVOID];
+                dataFloatingReadingsArray[_FloaterIndexTOAVOID].Add(reading);
+            }
+            ProcessData_lastFloater(_FloaterIndexTOAVOID); // Process data after collection is done
+        }
+
+
+
+        private void ProcessData_lastFloater(int index)
+        {
+            var readings = dataFloatingReadingsArray[index];
+            if (readings.Count > 2)
+            {
+                readings.Sort();
+                readings.RemoveAt(0); // Remove first
+                readings.RemoveAt(readings.Count - 1); // Remove last
+
+                int min = readings.Min();
+                int max = readings.Max();
+                double average = readings.Average();
+
+                // Update the corresponding label in the 2D array
+                floatingColumn[index].Text = $"i:{min} a: {max} v: {average:N2}";
+            }
+            dataFloatingReadingsArray[index].Clear(); // Clear existing data after processing
+        }
+        #endregion
+
+
+
 
         private void timer_100_Tick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            for (int i = 1; i < 17; i++)
+            {
+                _lbls_ADOs[i].Text = "o" + i + ": " + _ints_ADOS[i].ToString();
+            }
         }
 
         private void Instance_MessageReceived(MBIV_RX message)
@@ -131,6 +323,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             lbl_curAIN.Text = "curAIN: " + _ACTIVEAIN;
             lbl_curLVL.Text = "curLVL: " + _ACTIVELEVEL;
             lbl_RX.Text = "RX: " + message.ToString();
+            lbl_cufloaterIndx.Text = "curFloater: " + _FloaterIndexTOAVOID;
         }
  
 

@@ -571,6 +571,162 @@ namespace RedDwarf.RedAwarf._Globalz
             LJM.eWriteNames(handle, Num_MUXDAC_enries, MUXDAC_names, MUXDAC_values, ref errorAddress1);
 
         }
+
+        public void WRITEDATA_CHAN_LVL(int argCHannelNumber, double arg_lvl, bool argIsNOtFloat)
+        {
+            if (arg_lvl < 0)
+            {
+                arg_lvl = 0;
+            }
+            if (arg_lvl > 5)
+            {
+                arg_lvl = 5;
+            }
+            
+
+            switch (argCHannelNumber)
+            {
+                case 1:
+
+                    muxbit0 = true;
+                    muxbit1 = true;
+                    muxbit2 = true;
+                    muxbit3 = true;
+                    break;
+                case 2:
+
+                    muxbit0 = false;
+                    muxbit1 = true;
+                    muxbit2 = true;
+                    muxbit3 = true;
+                    break;
+                case 3:
+                    muxbit0 = true;
+                    muxbit1 = false;
+                    muxbit2 = true;
+                    muxbit3 = true;
+                    break;
+                case 4:
+                    muxbit0 = false;
+                    muxbit1 = false;
+                    muxbit2 = true;
+                    muxbit3 = true;
+                    break;
+
+                case 5:
+                    muxbit0 = true;
+                    muxbit1 = true;
+                    muxbit2 = false;
+                    muxbit3 = true;
+                    break;
+
+                case 6:
+                    muxbit0 = false;
+                    muxbit1 = true;
+                    muxbit2 = false;
+                    muxbit3 = true;
+                    break;
+                case 7:
+                    muxbit0 = true;
+                    muxbit1 = false;
+                    muxbit2 = false;
+                    muxbit3 = true;
+                    break;
+                case 8:
+                    muxbit0 = false;
+                    muxbit1 = false;
+                    muxbit2 = false;
+                    muxbit3 = true;
+                    break;
+                case 9:
+                    muxbit0 = true;
+                    muxbit1 = true;
+                    muxbit2 = true;
+                    muxbit3 = false;
+                    break;
+                case 10:
+                    muxbit0 = false;
+                    muxbit1 = true;
+                    muxbit2 = true;
+                    muxbit3 = false;
+                    break;
+                case 11:
+                    muxbit0 = true;
+                    muxbit1 = false;
+                    muxbit2 = true;
+                    muxbit3 = false;
+                    break;
+                case 12:
+                    muxbit0 = false;
+                    muxbit1 = false;
+                    muxbit2 = true;
+                    muxbit3 = false;
+                    break;
+                case 13:
+
+                    muxbit0 = true;
+                    muxbit1 = true;
+                    muxbit2 = false;
+                    muxbit3 = false;
+                    break;
+
+                case 14:
+                    muxbit0 = false;
+                    muxbit1 = true;
+                    muxbit2 = false;
+                    muxbit3 = false;
+                    break;
+                case 15:
+                    muxbit0 = false;
+                    muxbit1 = false;
+                    muxbit2 = false;
+                    muxbit3 = false;
+                    break;
+                case 16:
+                    muxbit0 = true;
+                    muxbit1 = false;
+                    muxbit2 = false;
+                    muxbit3 = false;
+                    break;
+                default:
+                    muxbit0 = true;
+                    muxbit1 = true;
+                    muxbit2 = true;
+                    muxbit3 = true;
+                    break;
+            }
+
+          switch(arg_lvl)
+            {
+                case 0:
+                    _RAW_DACTOSEND = 0.0;
+                    break;
+                case 1:
+                    _RAW_DACTOSEND = 2.5;
+                    break;
+                case 2:
+                    _RAW_DACTOSEND = 5.0;
+                    break;
+                default:
+                    _RAW_DACTOSEND = 0.0;
+                    break;
+            }
+
+            MUXDAC_values[0] = muxbit0 ? 0 : 1;
+            MUXDAC_values[1] = muxbit1 ? 0 : 1;
+            MUXDAC_values[2] = muxbit2 ? 0 : 1;
+            MUXDAC_values[3] = muxbit3 ? 0 : 1;
+            MUXDAC_values[4] = _RAW_DACTOSEND;
+
+            if (!isOnBus)
+            {
+                return;
+            }
+
+            int errorAddress1 = 0;
+            LJM.eWriteNames(handle, Num_MUXDAC_enries, MUXDAC_names, MUXDAC_values, ref errorAddress1);
+
+        }
         //*****************************************************************************************************************tWrting FIO values to the LabJack will be read later by the MBIV and found in the MessageReceived
         public void WRITEDATA_FIO(bool argXfer1, bool argXfer2, bool argDK1, bool argDk2, bool argClu1, bool argClu2)
         {
