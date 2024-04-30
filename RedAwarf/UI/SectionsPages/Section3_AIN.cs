@@ -18,12 +18,13 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
     {
 
 
-        int _MAX_AINS = 4; //full =16 , 2
+        int _MAX_AINS = 16; //full =16 , 2
 
-        int _MAX_LVLS = 1;
+        int _MAX_LVLS = 2;
  
-        int WaitToTakeEffect = 100;
-        int targetSamples = 5;
+        int WaitToTakeEffect = 150;
+        int WAIT_DIO_EFFECT = 4000;
+        int targetSamples = 7;
         private System.Windows.Forms.Timer TimerForLoop = new System.Windows.Forms.Timer();
         private List<int> measurementValues = new List<int>();  // List to store measurement values for each turn
 
@@ -42,11 +43,16 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         DATA_CELL_MEASURES[] _floatingCellsMEasures;
 
         MBIV_RX _myCopyofDataMBIV;
+        LABJAK_RX _MAINLabjackObj;
 
         int _FULL_MAX_AINS = 17;
         int _FULL_MAX_LVLS = 2;
 
         private List<int>[] dataFloatingReadingsArray;
+
+        bool is_cycling = false;
+
+        DATA_TX _DATA_TX = new DATA_TX();
         public Section3_AIN()
         {
             InitializeComponent();
@@ -103,9 +109,138 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             }
             floatingColumn = new Label[] { label_0_3, label_1_3, label_2_3, label_3_3, label_4_3, label_5_3, label_6_3, label_7_3, label_8_3, label_9_3, label_10_3, label_11_3, label_12_3, label_13_3, label_14_3, label_15_3, label_16_3 };
             _ints_ADOS = new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-            btn_startTest.Click += btn_Start_Click;
+           
             MNGR_COMMBIV.Instance.WRITEDATA_MUXDAC(16, 0);
             btn_testFloat.Click += btn_testFloat_Click;
+            btn_startTest7DI.Click += btn_startTest7DI_Click;
+
+            label_0_0.Text = Helpers.GetExpectedMinValue(0) + " - " + Helpers.GetExpectedMaxValue(0);
+            label_0_1.Text = Helpers.GetExpectedMinValue(1) + " - " + Helpers.GetExpectedMaxValue(1);
+            label_0_2.Text = Helpers.GetExpectedMinValue(2) + " - " + Helpers.GetExpectedMaxValue(2);
+            label_0_3.Text = Helpers.GetExpectedMinValue(3) + " - " + Helpers.GetExpectedMaxValue(3);
+
+            btn_startTest4DO.Click += btn_startTest4DO_Click;
+
+
+
+
+        }
+        private async Task startTest4D (){
+            MNGR_COMMBIV.Instance.WRITEDATA_FIO(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
+
+            await Task.Delay(WAIT_DIO_EFFECT);
+
+            cb_DKtr1.Checked = _myCopyofDataMBIV.GP3_Dktr1;
+            cb_DKtr2.Checked = _myCopyofDataMBIV.GP4_DKtr2;
+            cb_Xfer1.Checked = _myCopyofDataMBIV.GP5_Xfer1;
+            cb_Xfer2.Checked = _myCopyofDataMBIV.GP6_Xfer2;
+            cb_Clutch1.Checked = _myCopyofDataMBIV.GP0_sClutch;
+            cb_Clutch2.Checked = _myCopyofDataMBIV.GP7_pClutch;
+        }
+        private async Task startTest7DI() {
+
+            //set led1 led2 alarm to on 
+            cb_cmdDiO_0_led1.Checked = true;
+            cb_cmdDiO_1_led2.Checked = true;
+            cb_cmdDiO_2_alarm.Checked = true;
+
+            _DATA_TX.SetDIO(cb_cmdDiO_2_alarm.Checked, cb_cmdDiO_1_led2.Checked, cb_cmdDiO_0_led1.Checked, true);
+            MNGR_COMMBIV.Instance.WriteData__MBIV(_DATA_TX);
+            await Task.Delay(WAIT_DIO_EFFECT);
+            _MAINLabjackObj = MNGR_COMMBIV.Instance.READDATA____JACK();
+            if (!_MAINLabjackObj.LED1StaeOn)
+            {
+                lbl_LED1_EIO0.BackColor = Color.SeaGreen;
+            }
+            else
+            {
+                lbl_LED1_EIO0.BackColor = Color.Salmon;
+            }
+
+            if (!_MAINLabjackObj.LED2StaeOn)
+            {
+                lbl_LED2_EIO1.BackColor = Color.SeaGreen;
+            }
+            else
+            {
+                lbl_LED2_EIO1.BackColor = Color.Salmon;
+            }
+
+            if (!_MAINLabjackObj.AlarmStateON)
+            {
+                lbl_Alarm_AIN0.BackColor = Color.SeaGreen;
+            }
+            else
+            {
+                lbl_Alarm_AIN0.BackColor = Color.Salmon;
+            }
+        }
+        private async void btn_startTest4DO_Click(object sender, EventArgs e)
+        {
+
+
+            MNGR_COMMBIV.Instance.WRITEDATA_FIO(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
+
+            await Task.Delay(WAIT_DIO_EFFECT);
+
+            cb_DKtr1.Checked = _myCopyofDataMBIV.GP3_Dktr1;
+            cb_DKtr2.Checked = _myCopyofDataMBIV.GP4_DKtr2;
+            cb_Xfer1.Checked = _myCopyofDataMBIV.GP5_Xfer1;
+            cb_Xfer2.Checked = _myCopyofDataMBIV.GP6_Xfer2;
+            cb_Clutch1.Checked = _myCopyofDataMBIV.GP0_sClutch;
+            cb_Clutch2.Checked = _myCopyofDataMBIV.GP7_pClutch;
+
+
+
+
+
+
+        }
+
+        private async void btn_startTest7DI_Click(object sender, EventArgs e)
+        {
+
+
+
+             
+
+   
+            //set led1 led2 alarm to on 
+            cb_cmdDiO_0_led1.Checked = true;
+            cb_cmdDiO_1_led2.Checked = true;
+            cb_cmdDiO_2_alarm.Checked = true;
+
+            _DATA_TX.SetDIO(cb_cmdDiO_2_alarm.Checked, cb_cmdDiO_1_led2.Checked, cb_cmdDiO_0_led1.Checked, true);
+            MNGR_COMMBIV.Instance.WriteData__MBIV(_DATA_TX);
+            await Task.Delay(WAIT_DIO_EFFECT);
+            _MAINLabjackObj = MNGR_COMMBIV.Instance.READDATA____JACK();
+            if (!_MAINLabjackObj.LED1StaeOn)
+            {
+                lbl_LED1_EIO0.BackColor = Color.SeaGreen;
+            }
+            else
+            {
+                lbl_LED1_EIO0.BackColor = Color.Salmon;
+            }
+
+            if (!_MAINLabjackObj.LED2StaeOn)
+            {
+                lbl_LED2_EIO1.BackColor = Color.SeaGreen;
+            }
+            else
+            {
+                lbl_LED2_EIO1.BackColor = Color.Salmon;
+            }
+
+            if (!_MAINLabjackObj.AlarmStateON)
+            {
+                lbl_Alarm_AIN0.BackColor = Color.SeaGreen;
+            }
+            else
+            {
+                lbl_Alarm_AIN0.BackColor = Color.Salmon;
+            }
+
         }
 
         private async  void btn_testFloat_Click(object sender, EventArgs e)
@@ -124,21 +259,26 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
         private async Task RunMeasurementProcess()
         {
-      
-          await Start_FULLARRAY_Measurement();
+
+            await Start_FULLARRAY_Measurement();
             btn_testFloat.BackColor = Color.CadetBlue;
-         await StartMeasuring__AllFloatersLessLAst();
+            await StartMeasuring__AllFloatersLessLAst();
             btn_testFloat.BackColor = Color.Yellow;
-          await StartMeasuring__lastFloater();
+            await StartMeasuring__lastFloater();
             btn_testFloat.BackColor = Color.Purple;
-           await Start_Validate_Measurement();
+            await Start_Validate_Measurement();
             btn_testFloat.BackColor = Color.Blue;
+
+            await startTest4D();
+            btn_testFloat.BackColor = Color.Green;
+            await startTest7DI();
         }
 
 
         private async Task Start_Validate_Measurement()
         {
-       
+            is_cycling = false;
+
             await Task.Delay(WaitToTakeEffect);
 
             for (int i = 1; i <= _MAX_AINS; i++)
@@ -181,6 +321,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         #region Full_ARRAY_MEASUREMENT
         private async Task Start_FULLARRAY_Measurement()
         {
+            is_cycling = true;
             ClearAll_Floaters();
             for (int powerLevel = 0; powerLevel <= _MAX_LVLS; powerLevel++)
             {
@@ -223,7 +364,8 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
                 double average = readings.Average();
 
                 // Update the corresponding label in the 2D array
-                _labels2D_minmax[index, powerLevel].Text = $"i:{min} a: {max} v: {average:N2}";
+                //_labels2D_minmax[index, powerLevel].Text = $"i:{min} -: {max} v: {average:N2}";
+                _labels2D_minmax[index, powerLevel].Text = $"{min} - {max}";
                 _dataCellMeasures[index, powerLevel].MinValue = min;
                 _dataCellMeasures[index, powerLevel].MaxValue = max;
                 _dataCellMeasures[index, powerLevel].AverageValue = average;
@@ -238,6 +380,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
         private async Task StartMeasuring__AllFloatersLessLAst()
         {
+            is_cycling = false;
             ClearAll_Floaters();
 
             _FloaterIndexTOAVOID = _MAX_AINS;
@@ -283,7 +426,8 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
                     double average = readings.Average();
 
                     // Update the corresponding label in the 2D array
-                    floatingColumn[i].Text = $"i:{min} a: {max} v: {average:N2}";
+                    // floatingColumn[i].Text = $"i:{min} a: {max} v: {average:N2}";
+                    floatingColumn[i].Text = $"{min} - {max}";
                     _floatingCellsMEasures[i].MinValue = min;
                     _floatingCellsMEasures[i].MaxValue = max;
                     _floatingCellsMEasures[i].AverageValue = average;
@@ -297,6 +441,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         #region LAstFloater
         private async Task StartMeasuring__lastFloater()
         {
+            is_cycling = false;
             ClearAll_Floaters();
           _FloaterIndexTOAVOID = _MAX_AINS;
             MNGR_COMMBIV.Instance.WRITEDATA_CHAN_LVL(1, 0, false);
@@ -331,7 +476,8 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
                 double average = readings.Average();
 
                 // Update the corresponding label in the 2D array
-                floatingColumn[index].Text = $"i:{min} a: {max} v: {average:N2}";
+                //  floatingColumn[index].Text = $"i:{min} a: {max} v: {average:N2}";
+                floatingColumn[index].Text = $"{min} - {max}";
                 _floatingCellsMEasures[index].MinValue = min;
                 _floatingCellsMEasures[index].MaxValue = max;
                 _floatingCellsMEasures[index].AverageValue = average;
@@ -346,10 +492,39 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
         private void timer_100_Tick(object sender, EventArgs e)
         {
-            for (int i = 1; i < 17; i++)
+
+            if (is_cycling)
             {
-                _lbls_ADOs[i].Text = "o" + i + ": " + _ints_ADOS[i].ToString();
+                for (int i = 1; i < 17; i++)
+                {
+
+
+                    if (i == _ACTIVEAIN)
+                    {
+                        _lbls_ADOs[i].Text = "o" + i + ": " + _ints_ADOS[i].ToString();
+                        _lbls_ADOs[i].Font = new Font(_lbls_ADOs[i].Font, FontStyle.Bold);
+                    }
+                    else
+                    {
+                        _lbls_ADOs[i].Text = "";
+                        _lbls_ADOs[i].Font = new Font(_lbls_ADOs[i].Font, FontStyle.Regular);
+                    }
+                }
             }
+            else {
+
+                for (int i = 1; i < 17; i++)
+                {
+                    _lbls_ADOs[i].Text = "o" + i + ": " + _ints_ADOS[i].ToString();
+                    _lbls_ADOs[i].Font = new Font(_lbls_ADOs[i].Font, FontStyle.Regular);
+                  
+                }
+            }
+      
+
+            //make curent text bold
+         
+
         }
 
         private void Instance_MessageReceived(MBIV_RX message)
@@ -392,7 +567,6 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             lbl_curAIN.Text = "curAIN: " + _ACTIVEAIN;
             lbl_curLVL.Text = "curLVL: " + _ACTIVELEVEL;
             lbl_RX.Text = "RX: " + message.ToString();
-            lbl_cufloaterIndx.Text = "curFloater: " + _FloaterIndexTOAVOID;
         }
  
 

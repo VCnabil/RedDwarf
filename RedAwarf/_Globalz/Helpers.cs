@@ -26,18 +26,11 @@ namespace RedDwarf.RedAwarf._Globalz
 
         }
 
-        /*
-                 double _expected_min_v0 =0;
-        double _expected_max_v0 = 50;
-        double _expected_min_v2 = 2010;
-        double  _expected_max_v2 = 2090;
-        double _expected_min_v3 = 4050;
-        double _expected_max_v3 = 4095;
-         */
 
-          static double[] Expected_LOW_MED_HIGH_FLOAT_MinValues = new double[] { 0, 2010, 4050 , 4050 };
-          static double[] Expected_LOW_MED_HIGH_FLOAT_MaxValues = new double[] { 50, 2090, 4095 , 4095 };
-
+        //static double[] Expected_LOW_MED_HIGH_FLOAT_MinValues = new double[] { 0, 2010, 4050 , 4050 };
+        //static double[] Expected_LOW_MED_HIGH_FLOAT_MaxValues = new double[] { 50, 2090, 4095 , 4095 };
+        static double[] Expected_LOW_MED_HIGH_FLOAT_MinValues = new double[] { 0, 2000, 4010, 4010 };
+        static double[] Expected_LOW_MED_HIGH_FLOAT_MaxValues = new double[] { 80, 2200, 4095, 4095 };
         public static double GetExpectedMinValue(int arg_LVL) { 
 
             if(arg_LVL < 0)
