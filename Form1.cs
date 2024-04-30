@@ -11,15 +11,18 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using RedDwarf.RedAwarf.UI;
 using RedDwarf.RedAwarf.UI.SectionsPages;
+using RedDwarf.RedAwarf.UI.APPforms;
+using RedDwarf.RedAwarf._DataObjz.DataTestReport;
 
 namespace RedDwarf
 {
     public partial class Form1 : Form
     {
-      
+        DATA_TESTREPORT _dataPAPAreport;
         public Form1()
         {
             InitializeComponent();
+            _dataPAPAreport = new DATA_TESTREPORT();
             label2_JackSerial.Text = "Initial Test";
             label3_JackFirm.Text = "Initial Test";
             btn_YesAuto.Click += Btn_YesAuto_Click;
@@ -28,13 +31,7 @@ namespace RedDwarf
             lstCOMPorts.Visible = false;
             grouptests.Visible = false;
 
-            button_NewTestForm.Click += (sender, e) =>
-            {
-                //NewTestForm newTestForm = new NewTestForm();
-                //newTestForm.Show();
-                testSectionForm testSectionForm = new testSectionForm();
-                testSectionForm.Show();
-            };
+            btn_StartHere.Click += Open_TestReportForm;
 
             btn_Section3ain.Click += (sender, e) =>
             {
@@ -50,7 +47,23 @@ namespace RedDwarf
             this.FormClosing += new FormClosingEventHandler(FormClosing_Handler);
         }
 
-     
+        private void Open_TestReportForm(object sender, EventArgs e)
+        {
+            AppFormRedReport testForm = new AppFormRedReport(_dataPAPAreport);
+            //testForm.FormClosed += new FormClosedEventHandler(TestForm_FormClosed);
+            //this.Hide();
+            testForm.Show();
+        }
+
+        private void TestForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //AppFormRedReport testForm = sender as AppFormRedReport;
+            ////if (testForm != null && testForm.Report != null)
+            ////{
+            ////    lbl_labelToUpdate.Text = testForm.Report.sometext; // Update your label
+            ////}
+            //this.Show();
+        }
 
         private void Instance_aLabJackDataReceived(string argSerial, string argFirmware)
         {
@@ -63,6 +76,8 @@ namespace RedDwarf
                     //only giveme the first 5 characters of the firmware
                     argFirmware = argFirmware.Substring(0, 5);
                     label3_JackFirm.Text = "LabJack Firmware ver   : " + argFirmware;
+                    _dataPAPAreport.LabjackFirmwareVersion = argFirmware;
+                    _dataPAPAreport.LabjackSerialNumber = argSerial;
                     label0_conquestion.Text = "ALL Comunications Established";
                     grouptests.Visible = true;
                 }));
@@ -83,6 +98,7 @@ namespace RedDwarf
                 btn_NoManual.Visible = false;
                 lstCOMPorts.Visible = false;
                 label0_conquestion.Text = "COM  Established";
+                _dataPAPAreport.MBIV_SW_Version = argVersion;
             }));
         }
 

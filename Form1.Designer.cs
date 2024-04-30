@@ -39,7 +39,7 @@
             this.btn_Section3ain = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.grouptests = new System.Windows.Forms.GroupBox();
-            this.button_NewTestForm = new System.Windows.Forms.Button();
+            this.btn_StartHere = new System.Windows.Forms.Button();
             this.grouptests.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -151,7 +151,7 @@
             // 
             // grouptests
             // 
-            this.grouptests.Controls.Add(this.button_NewTestForm);
+            this.grouptests.Controls.Add(this.btn_StartHere);
             this.grouptests.Controls.Add(this.btn_Section3ain);
             this.grouptests.Controls.Add(this.button3);
             this.grouptests.Controls.Add(this.button1);
@@ -164,14 +164,14 @@
             // 
             // button_NewTestForm
             // 
-            this.button_NewTestForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_NewTestForm.Location = new System.Drawing.Point(15, 29);
-            this.button_NewTestForm.Margin = new System.Windows.Forms.Padding(2);
-            this.button_NewTestForm.Name = "button_NewTestForm";
-            this.button_NewTestForm.Size = new System.Drawing.Size(233, 51);
-            this.button_NewTestForm.TabIndex = 661;
-            this.button_NewTestForm.Text = "testSectionForm";
-            this.button_NewTestForm.UseVisualStyleBackColor = true;
+            this.btn_StartHere.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_StartHere.Location = new System.Drawing.Point(15, 29);
+            this.btn_StartHere.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_StartHere.Name = "button_NewTestForm";
+            this.btn_StartHere.Size = new System.Drawing.Size(233, 51);
+            this.btn_StartHere.TabIndex = 661;
+            this.btn_StartHere.Text = "StartHere";
+            this.btn_StartHere.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -207,7 +207,7 @@
         private System.Windows.Forms.Button btn_Section3ain;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox grouptests;
-        private System.Windows.Forms.Button button_NewTestForm;
+        private System.Windows.Forms.Button btn_StartHere;
     }
 }
 
