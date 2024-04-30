@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RedDwarf.RedAwarf._Globalz.Helpers;
 
 namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
 {
     public class DATA_TESTREPORT
     {
+        TESTsteps _curStep;
         string _docID = "";
         string _project = "";
         string _assemblyPN = "";
@@ -225,6 +227,14 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
             get { return _cellMeasures2D_AIN3; }
             set { _cellMeasures2D_AIN3 = value; }
         }
+        public void Set_curStep(TESTsteps arg_step)
+        {
+            _curStep = arg_step;
+        }
+        public TESTsteps Get_curStep()
+        {
+            return _curStep;
+        }
         public DATA_TESTREPORT()
         {
             _docID = "";
@@ -271,7 +281,7 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
             _dktr2_passed = false;
             _clu1_passed = false;
             _clu2_passed = false;
-                
+            _curStep = TESTsteps.TP_inited;
 
         }
 

@@ -143,23 +143,24 @@
             this.lbl_AD13 = new System.Windows.Forms.Label();
             this.lbl_AD12 = new System.Windows.Forms.Label();
             this.LBL_AD7 = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox3_AIN = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label1_title = new System.Windows.Forms.Label();
+            this.label3_Jumpers = new System.Windows.Forms.Label();
+            this.label2_debug = new System.Windows.Forms.Label();
+            this.groupBox7_DI = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4_DO = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn_next = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.groupBox3_AIN.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBox7_DI.SuspendLayout();
+            this.groupBox4_DO.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -181,6 +182,7 @@
             this.btn_startTest4DO.TabIndex = 708;
             this.btn_startTest4DO.Text = "test 4";
             this.btn_startTest4DO.UseVisualStyleBackColor = true;
+            this.btn_startTest4DO.Visible = false;
             // 
             // cb_cmdDiO_2_alarm
             // 
@@ -457,6 +459,7 @@
             this.btn_testFloat.TabIndex = 697;
             this.btn_testFloat.Text = "test 3";
             this.btn_testFloat.UseVisualStyleBackColor = true;
+            this.btn_testFloat.Visible = false;
             // 
             // btn_startTest7DI
             // 
@@ -466,6 +469,7 @@
             this.btn_startTest7DI.TabIndex = 696;
             this.btn_startTest7DI.Text = "test 7";
             this.btn_startTest7DI.UseVisualStyleBackColor = true;
+            this.btn_startTest7DI.Visible = false;
             // 
             // groupBox4
             // 
@@ -1583,82 +1587,83 @@
             this.LBL_AD7.Text = "AD07: 1000";
             this.LBL_AD7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupBox6
+            // groupBox3_AIN
             // 
-            this.groupBox6.Controls.Add(this.groupBox1);
-            this.groupBox6.Controls.Add(this.groupBox2);
-            this.groupBox6.Controls.Add(this.groupBox4);
-            this.groupBox6.Location = new System.Drawing.Point(0, 300);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1000, 1000);
-            this.groupBox6.TabIndex = 710;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Section 3 AIN";
+            this.groupBox3_AIN.Controls.Add(this.groupBox1);
+            this.groupBox3_AIN.Controls.Add(this.groupBox2);
+            this.groupBox3_AIN.Controls.Add(this.groupBox4);
+            this.groupBox3_AIN.Location = new System.Drawing.Point(0, 300);
+            this.groupBox3_AIN.Name = "groupBox3_AIN";
+            this.groupBox3_AIN.Size = new System.Drawing.Size(1000, 1000);
+            this.groupBox3_AIN.TabIndex = 710;
+            this.groupBox3_AIN.TabStop = false;
+            this.groupBox3_AIN.Text = "Section 3 AIN";
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.label1);
-            this.groupBox8.Controls.Add(this.label3);
-            this.groupBox8.Controls.Add(this.label2);
+            this.groupBox8.Controls.Add(this.btn_next);
+            this.groupBox8.Controls.Add(this.label1_title);
+            this.groupBox8.Controls.Add(this.label3_Jumpers);
+            this.groupBox8.Controls.Add(this.label2_debug);
             this.groupBox8.Location = new System.Drawing.Point(0, 10);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(1019, 228);
+            this.groupBox8.Size = new System.Drawing.Size(1019, 253);
             this.groupBox8.TabIndex = 711;
             this.groupBox8.TabStop = false;
             // 
-            // label1
+            // label1_title
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(509, 59);
-            this.label1.TabIndex = 639;
-            this.label1.Text = "Section 3: Analog Inputs";
+            this.label1_title.AutoSize = true;
+            this.label1_title.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1_title.Location = new System.Drawing.Point(6, 27);
+            this.label1_title.Name = "label1_title";
+            this.label1_title.Size = new System.Drawing.Size(509, 59);
+            this.label1_title.TabIndex = 639;
+            this.label1_title.Text = "Section 3: Analog Inputs";
             // 
-            // label3
+            // label3_Jumpers
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 141);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(975, 39);
-            this.label3.TabIndex = 641;
-            this.label3.Text = "Verify the following jumpers: JA03: 3–5, 4–6, 9–11, 10–12 | JA04: 1–3, 2–4";
+            this.label3_Jumpers.AutoSize = true;
+            this.label3_Jumpers.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3_Jumpers.Location = new System.Drawing.Point(9, 141);
+            this.label3_Jumpers.Margin = new System.Windows.Forms.Padding(0);
+            this.label3_Jumpers.Name = "label3_Jumpers";
+            this.label3_Jumpers.Size = new System.Drawing.Size(975, 39);
+            this.label3_Jumpers.TabIndex = 641;
+            this.label3_Jumpers.Text = "Verify the following jumpers: JA03: 3–5, 4–6, 9–11, 10–12 | JA04: 1–3, 2–4";
             // 
-            // label2
+            // label2_debug
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 86);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(333, 39);
-            this.label2.TabIndex = 640;
-            this.label2.Text = "Section 3: Analog Inputs";
+            this.label2_debug.AutoSize = true;
+            this.label2_debug.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2_debug.Location = new System.Drawing.Point(9, 86);
+            this.label2_debug.Margin = new System.Windows.Forms.Padding(0);
+            this.label2_debug.Name = "label2_debug";
+            this.label2_debug.Size = new System.Drawing.Size(333, 39);
+            this.label2_debug.TabIndex = 640;
+            this.label2_debug.Text = "Section 3: Analog Inputs";
             // 
-            // groupBox9
+            // groupBox7_DI
             // 
-            this.groupBox9.Controls.Add(this.label4);
-            this.groupBox9.Controls.Add(this.cb_Xfer1);
-            this.groupBox9.Controls.Add(this.cb_Clutch1);
-            this.groupBox9.Controls.Add(this.cb_CL2CMD);
-            this.groupBox9.Controls.Add(this.cb_DKtr1);
-            this.groupBox9.Controls.Add(this.cb_xfer1CMD);
-            this.groupBox9.Controls.Add(this.cb_DKtr2);
-            this.groupBox9.Controls.Add(this.cb_CL1CMD);
-            this.groupBox9.Controls.Add(this.cb_Xfer2);
-            this.groupBox9.Controls.Add(this.cb_DK1CMD);
-            this.groupBox9.Controls.Add(this.cb_Clutch2);
-            this.groupBox9.Controls.Add(this.cb_xfer2CMD);
-            this.groupBox9.Controls.Add(this.cb_DK2CMD);
-            this.groupBox9.Location = new System.Drawing.Point(1006, 800);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(350, 498);
-            this.groupBox9.TabIndex = 712;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Section 7 DI";
+            this.groupBox7_DI.Controls.Add(this.label4);
+            this.groupBox7_DI.Controls.Add(this.cb_Xfer1);
+            this.groupBox7_DI.Controls.Add(this.cb_Clutch1);
+            this.groupBox7_DI.Controls.Add(this.cb_CL2CMD);
+            this.groupBox7_DI.Controls.Add(this.cb_DKtr1);
+            this.groupBox7_DI.Controls.Add(this.cb_xfer1CMD);
+            this.groupBox7_DI.Controls.Add(this.cb_DKtr2);
+            this.groupBox7_DI.Controls.Add(this.cb_CL1CMD);
+            this.groupBox7_DI.Controls.Add(this.cb_Xfer2);
+            this.groupBox7_DI.Controls.Add(this.cb_DK1CMD);
+            this.groupBox7_DI.Controls.Add(this.cb_Clutch2);
+            this.groupBox7_DI.Controls.Add(this.cb_xfer2CMD);
+            this.groupBox7_DI.Controls.Add(this.cb_DK2CMD);
+            this.groupBox7_DI.Location = new System.Drawing.Point(1006, 800);
+            this.groupBox7_DI.Name = "groupBox7_DI";
+            this.groupBox7_DI.Size = new System.Drawing.Size(350, 498);
+            this.groupBox7_DI.TabIndex = 712;
+            this.groupBox7_DI.TabStop = false;
+            this.groupBox7_DI.Text = "Section 7 DI";
             // 
             // label4
             // 
@@ -1670,41 +1675,50 @@
             this.label4.TabIndex = 713;
             this.label4.Text = "SimFinger _ MBIV RX";
             // 
-            // groupBox3
+            // groupBox4_DO
             // 
-            this.groupBox3.Controls.Add(this.cb_cmdDiO_2_alarm);
-            this.groupBox3.Controls.Add(this.cb_cmdDiO_1_led2);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.cb_cmdDiO_0_led1);
-            this.groupBox3.Controls.Add(this.lbl_Alarm_AIN0);
-            this.groupBox3.Controls.Add(this.lbl_LED1_EIO0);
-            this.groupBox3.Controls.Add(this.lbl_LED2_EIO1);
-            this.groupBox3.Location = new System.Drawing.Point(1006, 300);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(350, 498);
-            this.groupBox3.TabIndex = 714;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Section 4 DO";
+            this.groupBox4_DO.Controls.Add(this.cb_cmdDiO_2_alarm);
+            this.groupBox4_DO.Controls.Add(this.cb_cmdDiO_1_led2);
+            this.groupBox4_DO.Controls.Add(this.label5);
+            this.groupBox4_DO.Controls.Add(this.cb_cmdDiO_0_led1);
+            this.groupBox4_DO.Controls.Add(this.lbl_Alarm_AIN0);
+            this.groupBox4_DO.Controls.Add(this.lbl_LED1_EIO0);
+            this.groupBox4_DO.Controls.Add(this.lbl_LED2_EIO1);
+            this.groupBox4_DO.Location = new System.Drawing.Point(1006, 300);
+            this.groupBox4_DO.Name = "groupBox4_DO";
+            this.groupBox4_DO.Size = new System.Drawing.Size(350, 498);
+            this.groupBox4_DO.TabIndex = 714;
+            this.groupBox4_DO.TabStop = false;
+            this.groupBox4_DO.Text = "Section 4 DO";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 40);
+            this.label5.Location = new System.Drawing.Point(26, 202);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(211, 26);
             this.label5.TabIndex = 714;
             this.label5.Text = "MBIV TX _ SimEyes";
+            // 
+            // btn_next
+            // 
+            this.btn_next.Location = new System.Drawing.Point(762, 208);
+            this.btn_next.Name = "btn_next";
+            this.btn_next.Size = new System.Drawing.Size(238, 39);
+            this.btn_next.TabIndex = 715;
+            this.btn_next.Text = "NEXT";
+            this.btn_next.UseVisualStyleBackColor = true;
             // 
             // AppFormALLinone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2374, 1429);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.groupBox4_DO);
+            this.Controls.Add(this.groupBox7_DI);
             this.Controls.Add(this.groupBox8);
-            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox3_AIN);
             this.Controls.Add(this.btn_startTest4DO);
             this.Controls.Add(this.lbl_RX);
             this.Controls.Add(this.pictureBox1);
@@ -1722,13 +1736,13 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
+            this.groupBox3_AIN.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox7_DI.ResumeLayout(false);
+            this.groupBox7_DI.PerformLayout();
+            this.groupBox4_DO.ResumeLayout(false);
+            this.groupBox4_DO.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1850,14 +1864,15 @@
         private System.Windows.Forms.Label lbl_AD13;
         private System.Windows.Forms.Label lbl_AD12;
         private System.Windows.Forms.Label LBL_AD7;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox3_AIN;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label label1_title;
+        private System.Windows.Forms.Label label3_Jumpers;
+        private System.Windows.Forms.Label label2_debug;
+        private System.Windows.Forms.GroupBox groupBox7_DI;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4_DO;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_next;
     }
 }

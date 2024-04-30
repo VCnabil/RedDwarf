@@ -1,4 +1,6 @@
-﻿using RedDwarf.RedAwarf._DataObjz.DataTestReport;
+﻿using RedDwarf.RedAwarf._DataObjz.DataCOMM;
+using RedDwarf.RedAwarf._DataObjz.DataTestReport;
+using RedDwarf.RedAwarf._Globalz;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,8 @@ namespace RedDwarf.RedAwarf.UI.APPforms
     public partial class AppFormRedReport : Form
     {
         DATA_TESTREPORT report;
+
+   
         public AppFormRedReport(DATA_TESTREPORT arg_tp)
         {
             report = arg_tp;
@@ -28,7 +32,11 @@ namespace RedDwarf.RedAwarf.UI.APPforms
             group_RESULTS_DI7.Hide();
 
             btn_ToTestForm.Click += OpenTestForm;
+
+        
         }
+
+ 
 
         private void OpenTestForm(object sender, EventArgs e)
         {

@@ -696,6 +696,20 @@ namespace RedDwarf.RedAwarf._DataObjz.DataCOMM
             __all_ains[16] = AIN16;
 
 
+
+            /*
+             //alt
+             
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[0] = _gp5_Xfer1? 0:1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[1] = _gp6_Xfer2? 0:1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[2] = _gp3_Dktr1? 0 : 1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[3] = _gp4_Dktr2? 0 : 1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[4] = _gp0_sclutch? 0 : 1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[5] = _gp7_pclutch? 0 : 1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[6] = _gp1_portAP? 0 : 1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[7] = _gp2_stbdAP? 0 : 1;
+            __allDIs_ordered_xfer_dk_clutch_ap_adpi[8] = _apdi8? 0 : 1;
+             */
             __allDIs_ordered_xfer_dk_clutch_ap_adpi[0] = _gp5_Xfer1? 1:0;
             __allDIs_ordered_xfer_dk_clutch_ap_adpi[1] = _gp6_Xfer2? 1:0;
             __allDIs_ordered_xfer_dk_clutch_ap_adpi[2] = _gp3_Dktr1? 1:0;

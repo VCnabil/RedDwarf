@@ -9,6 +9,18 @@ namespace RedDwarf.RedAwarf._Globalz
     public class Helpers
     {
 
+        public enum TESTsteps { 
+            APPstarted = 0,
+            TP_inited = 1,
+            TESTFORM_0_opened = 2,
+            TESTFORM_1_look = 3,
+            TESTFORM_2_verify_3AIN = 4,
+            TESTFORM_3_verify_4DO = 5,
+            TESTFORM_4_verify_7DI = 6,
+            TESTFORM_5_ISTESTING = 7,
+            TESTFORM_6_TESTED_COMPLETE = 8,
+        }
+
         public enum DACsetting
         {
             LOW = 0,
@@ -25,6 +37,9 @@ namespace RedDwarf.RedAwarf._Globalz
             MEASURING_FULLARRAY= 3,
 
         }
+
+
+
 
 
         //static double[] Expected_LOW_MED_HIGH_FLOAT_MinValues = new double[] { 0, 2010, 4050 , 4050 };

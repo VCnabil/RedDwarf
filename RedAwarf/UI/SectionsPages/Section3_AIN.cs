@@ -60,7 +60,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             _FULL_MAX_AINS = _MAX_AINS + 1;
             _FULL_MAX_LVLS = _MAX_LVLS + 1;
 
-            dataFloatingReadingsArray = new List<int>[17]; // Initialize the array for 17 lists
+            dataFloatingReadingsArray = new List<int>[_FULL_MAX_AINS]; // Initialize the array for 17 lists
             for (int i = 0; i < dataFloatingReadingsArray.Length; i++)
             {
                 dataFloatingReadingsArray[i] = new List<int>(); // Initialize each list in the array
