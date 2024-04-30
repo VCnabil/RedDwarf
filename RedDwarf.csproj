@@ -174,8 +174,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="RedAwarf\ExternalRecs\" />
+    <Content Include="RedAwarf\ExternalRecs\Images\TutorialSlides\MBIV_Slide_3AIN.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RedAwarf\ExternalRecs\Images\TutorialSlides\MBIV_Slide_4DO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RedAwarf\ExternalRecs\Images\TutorialSlides\MBIV_Slide_7DI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RedAwarf\ExternalRecs\Images\TutorialSlides\MBIV_Slide_empty.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

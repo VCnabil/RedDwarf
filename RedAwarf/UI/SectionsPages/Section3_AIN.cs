@@ -69,7 +69,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             _floatingCellsMEasures = new DATA_CELL_MEASURES[_FULL_MAX_AINS];
             for (int i = 0; i < _FULL_MAX_AINS; i++)
             {
-                _floatingCellsMEasures[i] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(3), Helpers.GetExpectedMaxValue(3));
+                _floatingCellsMEasures[i] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(3), Helpers.GetExpectedMaxValue(3), Helpers.Expected_average()[3]);
             }
             TimerForLoop.Interval = 280;
             TimerForLoop.Tick += timer_100_Tick;
@@ -104,7 +104,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
             {
                 for (int j = 0; j < _FULL_MAX_LVLS; j++)
                 {
-                    _dataCellMeasures[i, j] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(j), Helpers.GetExpectedMaxValue(j));
+                    _dataCellMeasures[i, j] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(j), Helpers.GetExpectedMaxValue(j), Helpers.Expected_average()[j]);
                 }
             }
             floatingColumn = new Label[] { label_0_3, label_1_3, label_2_3, label_3_3, label_4_3, label_5_3, label_6_3, label_7_3, label_8_3, label_9_3, label_10_3, label_11_3, label_12_3, label_13_3, label_14_3, label_15_3, label_16_3 };

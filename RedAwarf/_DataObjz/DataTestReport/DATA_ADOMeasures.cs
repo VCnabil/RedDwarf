@@ -38,6 +38,7 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
         double _minValue;
         double _maxValue;
         double _averageValue;
+        int _validationResult;
 
         public double MinValue
         {
@@ -64,7 +65,9 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
 
         double _expectedMin;
         double _expectedMax;
-        public DATA_CELL_MEASURES(double argExpectedMin, double argExpetedMAX)
+        double _expectedAverage;
+        double _averagePAssThreshol=5;
+        public DATA_CELL_MEASURES(double argExpectedMin, double argExpetedMAX, double expectedAverage)
         {
             int _smallestIntegerPossible = int.MinValue;
             int _largestIntegerPossible = int.MaxValue;
@@ -74,6 +77,46 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
             _samplesTaken = 0;
             _expectedMin = argExpectedMin;
             _expectedMax = argExpetedMAX;
+            _validationResult = -1;
+            _expectedAverage = expectedAverage;
+        }
+
+        // int result 0 = validation passed,
+        // 1 = validation failed min value out of range
+        // 2 = validation failed max value out of range
+        // 3 = validation failed both min and max out of range
+        // 4 = validation failed average out of range
+
+        public int Validate()
+        {
+
+            //using _validationResult 
+
+            if (_minValue < _expectedMin && _maxValue > _expectedMax)
+            {
+                _validationResult = 0;
+            }
+            else if (_minValue < _expectedMin)
+            {
+                _validationResult = 1;
+            }
+            else if (_maxValue > _expectedMax)
+            {
+                _validationResult = 2;
+            }
+            else if (_minValue < _expectedMin && _maxValue > _expectedMax)
+            {
+                _validationResult = 3;
+            }
+            else if (_averageValue < (_expectedAverage-_averagePAssThreshol) || _averageValue > (_expectedAverage +_averagePAssThreshol) )
+            {
+                _validationResult = 4;
+            }
+            else
+            {
+                _validationResult = 0;
+            }
+            return _validationResult;
         }
 
     }
