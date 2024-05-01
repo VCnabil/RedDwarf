@@ -9,6 +9,8 @@ namespace RedDwarf.RedAwarf._Globalz
     public class Helpers
     {
 
+
+
         public enum TESTsteps { 
             APPstarted = 0,
             TP_inited = 1,
@@ -37,6 +39,7 @@ namespace RedDwarf.RedAwarf._Globalz
             MEASURING_FULLARRAY= 3,
 
         }
+
 
 
 
@@ -83,5 +86,23 @@ namespace RedDwarf.RedAwarf._Globalz
             }
             return Expected_LOW_MED_HIGH_FLOAT_MaxValues[arg_LVL];
         }
+
+        static int _maxains = 16;
+        static int _maxlvls = 2;
+        public static int Get_MAX_AINs()
+        {
+            return _maxains;
+        }
+        public static int Get_MAX_LVLS()
+        {
+            return _maxlvls;
+        }
+
+        public static int intervalTicks = 140;
+        public static int WaitToTakeEffect = 210;
+        public static int WAIT_DIO_EFFECT = 4000;
+        public static int targetSamples = 4;
+
+
     }
 }

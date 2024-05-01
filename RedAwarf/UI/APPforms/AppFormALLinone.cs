@@ -28,13 +28,10 @@ namespace RedDwarf.RedAwarf.UI.APPforms
         };
 
         #region OldPArams
-        int _MAX_AINS = 16; //full =16 , 2
+       // int _MAX_AINS = 16; //full =16 , 2
 
-        int _MAX_LVLS = 2;
+        
 
-        int WaitToTakeEffect = 150;
-        int WAIT_DIO_EFFECT = 5000;
-        int targetSamples = 7;
         private System.Windows.Forms.Timer TimerForLoop = new System.Windows.Forms.Timer();
         private List<int> measurementValues = new List<int>();  // List to store measurement values for each turn
 
@@ -55,8 +52,8 @@ namespace RedDwarf.RedAwarf.UI.APPforms
         MBIV_RX _myCopyofDataMBIV;
         LABJAK_RX _MAINLabjackObj;
 
-        int _FULL_MAX_AINS = 17;
-        int _FULL_MAX_LVLS = 2;
+      //  int _FULL_MAX_AINS = 17;
+      
 
         private List<int>[] dataFloatingReadingsArray;
 
@@ -81,21 +78,17 @@ namespace RedDwarf.RedAwarf.UI.APPforms
 
 
             #region oldInits
-            _FULL_MAX_AINS = _MAX_AINS + 1;
-            _FULL_MAX_LVLS = _MAX_LVLS + 1;
+           
+         
 
-            dataFloatingReadingsArray = new List<int>[_FULL_MAX_AINS]; // Initialize the array for 17 lists
+            dataFloatingReadingsArray = new List<int>[Get_MAX_AINs() + 1]; // Initialize the array for 17 lists
             for (int i = 0; i < dataFloatingReadingsArray.Length; i++)
             {
                 dataFloatingReadingsArray[i] = new List<int>(); // Initialize each list in the array
             }
 
-            _floatingCellsMEasures = new DATA_CELL_MEASURES[_FULL_MAX_AINS];
-            for (int i = 0; i < _FULL_MAX_AINS; i++)
-            {
-                _floatingCellsMEasures[i] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(3), Helpers.GetExpectedMaxValue(3), Helpers.Expected_average()[3]);
-            }
-            TimerForLoop.Interval = 140;
+            _floatingCellsMEasures = TPReport.CellMeasuresFLoats;
+            TimerForLoop.Interval = intervalTicks;
             TimerForLoop.Tick += timer_100_Tick;
             TimerForLoop.Start();
             MNGR_COMMBIV.Instance.MessageReceived += Instance_MessageReceived;
@@ -123,14 +116,7 @@ namespace RedDwarf.RedAwarf.UI.APPforms
 
 
 
-            _dataCellMeasures = new DATA_CELL_MEASURES[_FULL_MAX_AINS, _FULL_MAX_LVLS];
-            for (int i = 0; i < _FULL_MAX_AINS; i++)
-            {
-                for (int j = 0; j < _FULL_MAX_LVLS; j++)
-                {
-                    _dataCellMeasures[i, j] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(j), Helpers.GetExpectedMaxValue(j), Helpers.Expected_average()[j]);
-                }
-            }
+            _dataCellMeasures = TPReport.CellMeasures2D_AIN3;
             floatingColumn = new Label[] { label_0_3, label_1_3, label_2_3, label_3_3, label_4_3, label_5_3, label_6_3, label_7_3, label_8_3, label_9_3, label_10_3, label_11_3, label_12_3, label_13_3, label_14_3, label_15_3, label_16_3 };
             _ints_ADOS = new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
@@ -173,38 +159,96 @@ namespace RedDwarf.RedAwarf.UI.APPforms
         }
 
 
+
+
+        // int result 0 = validation passed,
+        // 1 = validation failed min value out of range
+        // 2 = validation failed max value out of range
+        // 3 = validation failed both min and max out of range
+        // 4 = validation failed average out of range
         private async Task Start_Validate_Measurement()
         {
             is_cycling = false;
 
+
+
+
+            TPReport.Alarm_Passed = _MAINLabjackObj.AlarmStateON;
+            TPReport.Led1_Passed = _MAINLabjackObj.LED1StaeOn;
+            TPReport.Led2_Passed = _MAINLabjackObj.LED2StaeOn;
+            TPReport.Xfer1_Passed = cb_Xfer1.Checked;
+            TPReport.Xfer2_Passed = cb_Xfer2.Checked;
+            TPReport.Dktr1_Passed = cb_DKtr1.Checked;
+            TPReport.Dktr2_Passed = cb_DKtr2.Checked;
+            TPReport.Clu1_Passed = cb_Clutch1.Checked;
+            TPReport.Clu2_Passed = cb_Clutch2.Checked;
+
             await Task.Delay(WaitToTakeEffect);
 
-            for (int i = 1; i <= _MAX_AINS; i++)
-            {
-                for (int j = 0; j <= _MAX_LVLS; j++)
-                {
-                    if (_dataCellMeasures[i, j].MinValue < Helpers.GetExpectedMinValue(j) || _dataCellMeasures[i, j].MaxValue > Helpers.GetExpectedMaxValue(j))
-                    {
-                        _labels2D_minmax[i, j].BackColor = Color.Red;
-                    }
-                    else
-                    {
-                        _labels2D_minmax[i, j].BackColor = Color.Green;
-                    }
-                }
-            }
 
-            for (int i = 1; i <= _MAX_AINS; i++)
-            {
-                if (_floatingCellsMEasures[i].MinValue < Helpers.GetExpectedMinValue(3) || _floatingCellsMEasures[i].MaxValue > Helpers.GetExpectedMaxValue(3))
-                {
-                    floatingColumn[i].BackColor = Color.Red;
-                }
-                else
-                {
-                    floatingColumn[i].BackColor = Color.Green;
-                }
-            }
+            //for (int i = 1; i <= Get_MAX_AINs(); i++)
+            //{
+            //    for (int j = 0; j <= Get_MAX_LVLS(); j++)
+            //    {
+
+                 
+            //      int result=  _dataCellMeasures[i, j].Validate();
+            //        switch (result) {
+            //            case 0:
+            //                _labels2D_minmax[i, j].BackColor = Color.LimeGreen;
+            //                break;
+            //                case 1:
+            //                _labels2D_minmax[i, j].BackColor = Color.Yellow;
+            //                break;
+            //                case 2:
+            //                _labels2D_minmax[i, j].BackColor = Color.Orange;
+            //                break;
+            //                case 3:
+            //                _labels2D_minmax[i, j].BackColor = Color.Red;
+            //                break;
+            //                case 4:
+            //                _labels2D_minmax[i, j].BackColor = Color.Purple;
+            //                break;
+            //            default:
+            //                _labels2D_minmax[i, j].BackColor = Color.Red;
+            //                break;
+            //        }
+            //    }
+            //}
+
+            //for (int i = 1; i <= Get_MAX_AINs(); i++)
+            //{
+      
+            //    int result = _floatingCellsMEasures[i].Validate();
+
+            //    switch (result)
+            //    {
+            //        case 0:
+            //            floatingColumn[i].BackColor = Color.LimeGreen;
+            //            break;
+            //        case 1:
+            //            floatingColumn[i].BackColor = Color.Yellow;
+            //            break;
+            //        case 2:
+            //            floatingColumn[i].BackColor = Color.Orange;
+            //            break;
+            //        case 3:
+            //            floatingColumn[i].BackColor = Color.Red;
+            //            break;
+            //        case 4:
+            //            floatingColumn[i].BackColor = Color.Purple;
+            //            break;
+            //        default:
+            //            floatingColumn[i].BackColor = Color.Red;
+            //            break;
+            //    }
+            //}
+
+
+
+
+ 
+
 
         }
         void ClearAll_Floaters()
@@ -221,10 +265,10 @@ namespace RedDwarf.RedAwarf.UI.APPforms
         {
             is_cycling = true;
             ClearAll_Floaters();
-            for (int powerLevel = 0; powerLevel <= _MAX_LVLS; powerLevel++)
+            for (int powerLevel = 0; powerLevel <= Get_MAX_LVLS(); powerLevel++)
             {
                 await Task.Delay(WaitToTakeEffect);
-                for (int curAIN = 1; curAIN <= _MAX_AINS; curAIN++)
+                for (int curAIN = 1; curAIN <= Get_MAX_AINs(); curAIN++)
                 {
                     _ACTIVEAIN = curAIN;
                     _ACTIVELEVEL = powerLevel;
@@ -281,7 +325,7 @@ namespace RedDwarf.RedAwarf.UI.APPforms
             is_cycling = false;
             ClearAll_Floaters();
 
-            _FloaterIndexTOAVOID = _MAX_AINS;
+            _FloaterIndexTOAVOID = Get_MAX_AINs();
             MNGR_COMMBIV.Instance.WRITEDATA_CHAN_LVL(_FloaterIndexTOAVOID, 0, false);
             await Task.Delay(WaitToTakeEffect);
 
@@ -341,8 +385,9 @@ namespace RedDwarf.RedAwarf.UI.APPforms
         {
             is_cycling = false;
             ClearAll_Floaters();
-            _FloaterIndexTOAVOID = _MAX_AINS;
+            _FloaterIndexTOAVOID = Get_MAX_AINs();
             MNGR_COMMBIV.Instance.WRITEDATA_CHAN_LVL(1, 0, false);
+            await Task.Delay(WaitToTakeEffect);
             await Task.Delay(WaitToTakeEffect);
             await CollectDataFor_LastFloater(targetSamples);
         }
@@ -451,7 +496,7 @@ namespace RedDwarf.RedAwarf.UI.APPforms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error updating UI: " + ex.Message);
+                    //MessageBox.Show("Error updating UI: " + ex.Message);
                 }
             }
             else
@@ -464,7 +509,7 @@ namespace RedDwarf.RedAwarf.UI.APPforms
                 catch (Exception ex)
                 {
                     // Handle exception
-                    MessageBox.Show("Error updating UI: " + ex.Message);
+                    //MessageBox.Show("Error updating UI: " + ex.Message);
                 }
             }
         }
@@ -516,6 +561,17 @@ namespace RedDwarf.RedAwarf.UI.APPforms
                     lbl_Alarm_AIN0.BackColor = Color.Salmon;
                 }
             }
+
+            TPReport.Alarm_Passed= _MAINLabjackObj.AlarmStateON;
+            TPReport.Led1_Passed = _MAINLabjackObj.LED1StaeOn;
+            TPReport.Led2_Passed = _MAINLabjackObj.LED2StaeOn;
+            TPReport.Xfer1_Passed = cb_Xfer1.Checked;
+            TPReport.Xfer2_Passed = cb_Xfer2.Checked;
+            TPReport.Dktr1_Passed = cb_DKtr1.Checked;
+            TPReport.Dktr2_Passed = cb_DKtr2.Checked;
+            TPReport.Clu1_Passed = cb_Clutch1.Checked;
+            TPReport.Clu2_Passed = cb_Clutch2.Checked;
+
 
         }
         private async Task startTest_DIGITALS()
@@ -645,8 +701,8 @@ namespace RedDwarf.RedAwarf.UI.APPforms
         private async void Run_ALL_TESTS_In_Sequence()
         {
            
-            _ACTIVEAIN = _MAX_AINS;
-            _ACTIVELEVEL = _MAX_LVLS;
+            _ACTIVEAIN = Get_MAX_AINs();
+            _ACTIVELEVEL = Get_MAX_LVLS();
             MNGR_COMMBIV.Instance.WRITEDATA_MUXDAC(_ACTIVEAIN, _ACTIVELEVEL);
             btn_testFloat.BackColor = Color.Green;
             await Task.Delay(WaitToTakeEffect);

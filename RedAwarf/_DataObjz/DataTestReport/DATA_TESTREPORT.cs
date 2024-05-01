@@ -159,6 +159,7 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
         #endregion
 
         DATA_CELL_MEASURES[,] _cellMeasures2D_AIN3 ;
+        DATA_CELL_MEASURES[] _cellMEasuresFLoats;
 
         bool _alarm_passed;
         public bool Alarm_Passed
@@ -227,6 +228,11 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
             get { return _cellMeasures2D_AIN3; }
             set { _cellMeasures2D_AIN3 = value; }
         }
+        public DATA_CELL_MEASURES[] CellMeasuresFLoats
+        {
+            get { return _cellMEasuresFLoats; }
+            set { _cellMEasuresFLoats = value; }
+        }
         public void Set_curStep(TESTsteps arg_step)
         {
             _curStep = arg_step;
@@ -235,7 +241,7 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
         {
             return _curStep;
         }
-        public DATA_TESTREPORT()
+        public DATA_TESTREPORT(int arg_ainsPlus1, int argPowPus1)
         {
             _docID = "";
             _project = "";
@@ -262,13 +268,19 @@ namespace RedDwarf.RedAwarf._DataObjz.DataTestReport
             _secondTestersDate = "";
             _revisionNotes = "";
 
-            _cellMeasures2D_AIN3 = new DATA_CELL_MEASURES[17, 4];
-            for (int i = 0; i < 17; i++)
+            _cellMeasures2D_AIN3 = new DATA_CELL_MEASURES[arg_ainsPlus1, argPowPus1];
+            for (int i = 0; i < arg_ainsPlus1; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < argPowPus1; j++)
                 {
                     _cellMeasures2D_AIN3[i, j] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(j), Helpers.GetExpectedMaxValue(j), Helpers.Expected_average()[j]);
                 }
+            }
+            _cellMEasuresFLoats = new DATA_CELL_MEASURES[arg_ainsPlus1];
+
+            for (int i = 0; i < arg_ainsPlus1; i++)
+            {
+                _cellMEasuresFLoats[i] = new DATA_CELL_MEASURES(Helpers.GetExpectedMinValue(3), Helpers.GetExpectedMaxValue(3), Helpers.Expected_average()[3]);
             }
 
 

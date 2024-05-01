@@ -126,6 +126,7 @@
             this.button1.TabIndex = 658;
             this.button1.Text = "Section4 DO";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // btn_Section3ain
             // 
@@ -137,6 +138,7 @@
             this.btn_Section3ain.TabIndex = 659;
             this.btn_Section3ain.Text = "Section3 ain";
             this.btn_Section3ain.UseVisualStyleBackColor = true;
+            this.btn_Section3ain.Visible = false;
             // 
             // button3
             // 
@@ -148,6 +150,7 @@
             this.button3.TabIndex = 660;
             this.button3.Text = "Section5 DI";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             // 
             // grouptests
             // 
@@ -162,12 +165,12 @@
             this.grouptests.TabStop = false;
             this.grouptests.Text = "tests";
             // 
-            // button_NewTestForm
+            // btn_StartHere
             // 
             this.btn_StartHere.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_StartHere.Location = new System.Drawing.Point(15, 29);
             this.btn_StartHere.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_StartHere.Name = "button_NewTestForm";
+            this.btn_StartHere.Name = "btn_StartHere";
             this.btn_StartHere.Size = new System.Drawing.Size(233, 51);
             this.btn_StartHere.TabIndex = 661;
             this.btn_StartHere.Text = "StartHere";

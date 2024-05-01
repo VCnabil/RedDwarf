@@ -13,6 +13,7 @@ using RedDwarf.RedAwarf.UI;
 using RedDwarf.RedAwarf.UI.SectionsPages;
 using RedDwarf.RedAwarf.UI.APPforms;
 using RedDwarf.RedAwarf._DataObjz.DataTestReport;
+using static RedDwarf.RedAwarf._Globalz.Helpers;
 
 namespace RedDwarf
 {
@@ -22,7 +23,7 @@ namespace RedDwarf
         public Form1()
         {
             InitializeComponent();
-            _dataPAPAreport = new DATA_TESTREPORT();
+            _dataPAPAreport = new DATA_TESTREPORT(Get_MAX_AINs()+1,Get_MAX_LVLS()+1);
             label2_JackSerial.Text = "Initial Test";
             label3_JackFirm.Text = "Initial Test";
             btn_YesAuto.Click += Btn_YesAuto_Click;

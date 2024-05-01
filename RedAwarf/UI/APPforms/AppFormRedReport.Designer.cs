@@ -172,16 +172,16 @@
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.group_RESULTS_DO4 = new System.Windows.Forms.GroupBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
+            this.lbl_passfail_ALARM = new System.Windows.Forms.Label();
+            this.lbl_passfail_LED1 = new System.Windows.Forms.Label();
+            this.lbl_passfail_LED2 = new System.Windows.Forms.Label();
             this.group_RESULTS_DI7 = new System.Windows.Forms.GroupBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
+            this.lbl_passfail_xfer1 = new System.Windows.Forms.Label();
+            this.lbl_passfail_clu2 = new System.Windows.Forms.Label();
+            this.lbl_passfail_xfer2 = new System.Windows.Forms.Label();
+            this.lbl_passfail_clu1 = new System.Windows.Forms.Label();
+            this.lbl_passfail_dk1 = new System.Windows.Forms.Label();
+            this.lbl_passfail_dk2 = new System.Windows.Forms.Label();
             this.btn_Print = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -1845,10 +1845,10 @@
             // 
             // group_RESULTS_DO4
             // 
-            this.group_RESULTS_DO4.Controls.Add(this.label47);
-            this.group_RESULTS_DO4.Controls.Add(this.label48);
+            this.group_RESULTS_DO4.Controls.Add(this.lbl_passfail_ALARM);
+            this.group_RESULTS_DO4.Controls.Add(this.lbl_passfail_LED1);
             this.group_RESULTS_DO4.Controls.Add(this.label39);
-            this.group_RESULTS_DO4.Controls.Add(this.label49);
+            this.group_RESULTS_DO4.Controls.Add(this.lbl_passfail_LED2);
             this.group_RESULTS_DO4.Controls.Add(this.label31);
             this.group_RESULTS_DO4.Controls.Add(this.label30);
             this.group_RESULTS_DO4.Controls.Add(this.label29);
@@ -1859,47 +1859,47 @@
             this.group_RESULTS_DO4.TabStop = false;
             this.group_RESULTS_DO4.Text = "Results DO TEST";
             // 
-            // label47
+            // lbl_passfail_ALARM
             // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(212, 72);
-            this.label47.Margin = new System.Windows.Forms.Padding(0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(143, 33);
-            this.label47.TabIndex = 713;
-            this.label47.Text = "____---____";
+            this.lbl_passfail_ALARM.AutoSize = true;
+            this.lbl_passfail_ALARM.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_ALARM.Location = new System.Drawing.Point(212, 72);
+            this.lbl_passfail_ALARM.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_ALARM.Name = "lbl_passfail_ALARM";
+            this.lbl_passfail_ALARM.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_ALARM.TabIndex = 713;
+            this.lbl_passfail_ALARM.Text = "____---____";
             // 
-            // label48
+            // lbl_passfail_LED1
             // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(212, 115);
-            this.label48.Margin = new System.Windows.Forms.Padding(0);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(143, 33);
-            this.label48.TabIndex = 714;
-            this.label48.Text = "____---____";
+            this.lbl_passfail_LED1.AutoSize = true;
+            this.lbl_passfail_LED1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_LED1.Location = new System.Drawing.Point(212, 115);
+            this.lbl_passfail_LED1.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_LED1.Name = "lbl_passfail_LED1";
+            this.lbl_passfail_LED1.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_LED1.TabIndex = 714;
+            this.lbl_passfail_LED1.Text = "____---____";
             // 
-            // label49
+            // lbl_passfail_LED2
             // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(212, 158);
-            this.label49.Margin = new System.Windows.Forms.Padding(0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(143, 33);
-            this.label49.TabIndex = 715;
-            this.label49.Text = "____---____";
+            this.lbl_passfail_LED2.AutoSize = true;
+            this.lbl_passfail_LED2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_LED2.Location = new System.Drawing.Point(212, 158);
+            this.lbl_passfail_LED2.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_LED2.Name = "lbl_passfail_LED2";
+            this.lbl_passfail_LED2.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_LED2.TabIndex = 715;
+            this.lbl_passfail_LED2.Text = "____---____";
             // 
             // group_RESULTS_DI7
             // 
-            this.group_RESULTS_DI7.Controls.Add(this.label50);
-            this.group_RESULTS_DI7.Controls.Add(this.label51);
-            this.group_RESULTS_DI7.Controls.Add(this.label52);
-            this.group_RESULTS_DI7.Controls.Add(this.label53);
-            this.group_RESULTS_DI7.Controls.Add(this.label54);
-            this.group_RESULTS_DI7.Controls.Add(this.label55);
+            this.group_RESULTS_DI7.Controls.Add(this.lbl_passfail_xfer1);
+            this.group_RESULTS_DI7.Controls.Add(this.lbl_passfail_clu2);
+            this.group_RESULTS_DI7.Controls.Add(this.lbl_passfail_xfer2);
+            this.group_RESULTS_DI7.Controls.Add(this.lbl_passfail_clu1);
+            this.group_RESULTS_DI7.Controls.Add(this.lbl_passfail_dk1);
+            this.group_RESULTS_DI7.Controls.Add(this.lbl_passfail_dk2);
             this.group_RESULTS_DI7.Controls.Add(this.label40);
             this.group_RESULTS_DI7.Controls.Add(this.label41);
             this.group_RESULTS_DI7.Controls.Add(this.label45);
@@ -1914,71 +1914,71 @@
             this.group_RESULTS_DI7.TabStop = false;
             this.group_RESULTS_DI7.Text = "Results DI TEST";
             // 
-            // label50
+            // lbl_passfail_xfer1
             // 
-            this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(212, 86);
-            this.label50.Margin = new System.Windows.Forms.Padding(0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(143, 33);
-            this.label50.TabIndex = 724;
-            this.label50.Text = "____---____";
+            this.lbl_passfail_xfer1.AutoSize = true;
+            this.lbl_passfail_xfer1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_xfer1.Location = new System.Drawing.Point(212, 86);
+            this.lbl_passfail_xfer1.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_xfer1.Name = "lbl_passfail_xfer1";
+            this.lbl_passfail_xfer1.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_xfer1.TabIndex = 724;
+            this.lbl_passfail_xfer1.Text = "____---____";
             // 
-            // label51
+            // lbl_passfail_clu2
             // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(212, 313);
-            this.label51.Margin = new System.Windows.Forms.Padding(0);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(143, 33);
-            this.label51.TabIndex = 729;
-            this.label51.Text = "____---____";
+            this.lbl_passfail_clu2.AutoSize = true;
+            this.lbl_passfail_clu2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_clu2.Location = new System.Drawing.Point(212, 313);
+            this.lbl_passfail_clu2.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_clu2.Name = "lbl_passfail_clu2";
+            this.lbl_passfail_clu2.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_clu2.TabIndex = 729;
+            this.lbl_passfail_clu2.Text = "____---____";
             // 
-            // label52
+            // lbl_passfail_xfer2
             // 
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(212, 131);
-            this.label52.Margin = new System.Windows.Forms.Padding(0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(143, 33);
-            this.label52.TabIndex = 725;
-            this.label52.Text = "____---____";
+            this.lbl_passfail_xfer2.AutoSize = true;
+            this.lbl_passfail_xfer2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_xfer2.Location = new System.Drawing.Point(212, 131);
+            this.lbl_passfail_xfer2.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_xfer2.Name = "lbl_passfail_xfer2";
+            this.lbl_passfail_xfer2.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_xfer2.TabIndex = 725;
+            this.lbl_passfail_xfer2.Text = "____---____";
             // 
-            // label53
+            // lbl_passfail_clu1
             // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(212, 268);
-            this.label53.Margin = new System.Windows.Forms.Padding(0);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(143, 33);
-            this.label53.TabIndex = 728;
-            this.label53.Text = "____---____";
+            this.lbl_passfail_clu1.AutoSize = true;
+            this.lbl_passfail_clu1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_clu1.Location = new System.Drawing.Point(212, 268);
+            this.lbl_passfail_clu1.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_clu1.Name = "lbl_passfail_clu1";
+            this.lbl_passfail_clu1.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_clu1.TabIndex = 728;
+            this.lbl_passfail_clu1.Text = "____---____";
             // 
-            // label54
+            // lbl_passfail_dk1
             // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.Location = new System.Drawing.Point(212, 174);
-            this.label54.Margin = new System.Windows.Forms.Padding(0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(143, 33);
-            this.label54.TabIndex = 726;
-            this.label54.Text = "____---____";
+            this.lbl_passfail_dk1.AutoSize = true;
+            this.lbl_passfail_dk1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_dk1.Location = new System.Drawing.Point(212, 174);
+            this.lbl_passfail_dk1.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_dk1.Name = "lbl_passfail_dk1";
+            this.lbl_passfail_dk1.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_dk1.TabIndex = 726;
+            this.lbl_passfail_dk1.Text = "____---____";
             // 
-            // label55
+            // lbl_passfail_dk2
             // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label55.Location = new System.Drawing.Point(212, 219);
-            this.label55.Margin = new System.Windows.Forms.Padding(0);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(143, 33);
-            this.label55.TabIndex = 727;
-            this.label55.Text = "____---____";
+            this.lbl_passfail_dk2.AutoSize = true;
+            this.lbl_passfail_dk2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passfail_dk2.Location = new System.Drawing.Point(212, 219);
+            this.lbl_passfail_dk2.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_passfail_dk2.Name = "lbl_passfail_dk2";
+            this.lbl_passfail_dk2.Size = new System.Drawing.Size(143, 33);
+            this.lbl_passfail_dk2.TabIndex = 727;
+            this.lbl_passfail_dk2.Text = "____---____";
             // 
             // btn_Print
             // 
@@ -2175,15 +2175,15 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.GroupBox group_RESULTS_DO4;
         private System.Windows.Forms.GroupBox group_RESULTS_DI7;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label lbl_passfail_ALARM;
+        private System.Windows.Forms.Label lbl_passfail_LED1;
+        private System.Windows.Forms.Label lbl_passfail_LED2;
+        private System.Windows.Forms.Label lbl_passfail_xfer1;
+        private System.Windows.Forms.Label lbl_passfail_clu2;
+        private System.Windows.Forms.Label lbl_passfail_xfer2;
+        private System.Windows.Forms.Label lbl_passfail_clu1;
+        private System.Windows.Forms.Label lbl_passfail_dk1;
+        private System.Windows.Forms.Label lbl_passfail_dk2;
         private System.Windows.Forms.Button btn_Print;
     }
 }

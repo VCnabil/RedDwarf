@@ -145,6 +145,7 @@
             this.LBL_AD7 = new System.Windows.Forms.Label();
             this.groupBox3_AIN = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btn_next = new System.Windows.Forms.Button();
             this.label1_title = new System.Windows.Forms.Label();
             this.label3_Jumpers = new System.Windows.Forms.Label();
             this.label2_debug = new System.Windows.Forms.Label();
@@ -152,7 +153,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4_DO = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btn_next = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -167,7 +167,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(1362, 300);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 263);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1000, 1000);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -423,6 +423,7 @@
             this.lbl_RX.Size = new System.Drawing.Size(36, 25);
             this.lbl_RX.TabIndex = 701;
             this.lbl_RX.Text = "rx:";
+            this.lbl_RX.Visible = false;
             // 
             // lbl_regAIN
             // 
@@ -432,6 +433,7 @@
             this.lbl_regAIN.Size = new System.Drawing.Size(77, 25);
             this.lbl_regAIN.TabIndex = 700;
             this.lbl_regAIN.Text = "regAIN";
+            this.lbl_regAIN.Visible = false;
             // 
             // lbl_regLVL
             // 
@@ -441,6 +443,7 @@
             this.lbl_regLVL.Size = new System.Drawing.Size(70, 25);
             this.lbl_regLVL.TabIndex = 699;
             this.lbl_regLVL.Text = "reg lvl";
+            this.lbl_regLVL.Visible = false;
             // 
             // lbl_curAIN
             // 
@@ -450,6 +453,7 @@
             this.lbl_curAIN.Size = new System.Drawing.Size(41, 25);
             this.lbl_curAIN.TabIndex = 698;
             this.lbl_curAIN.Text = "ani";
+            this.lbl_curAIN.Visible = false;
             // 
             // btn_testFloat
             // 
@@ -463,7 +467,7 @@
             // 
             // btn_startTest7DI
             // 
-            this.btn_startTest7DI.Location = new System.Drawing.Point(1415, 61);
+            this.btn_startTest7DI.Location = new System.Drawing.Point(1028, 113);
             this.btn_startTest7DI.Name = "btn_startTest7DI";
             this.btn_startTest7DI.Size = new System.Drawing.Size(162, 37);
             this.btn_startTest7DI.TabIndex = 696;
@@ -1589,6 +1593,7 @@
             // 
             // groupBox3_AIN
             // 
+            this.groupBox3_AIN.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox3_AIN.Controls.Add(this.groupBox1);
             this.groupBox3_AIN.Controls.Add(this.groupBox2);
             this.groupBox3_AIN.Controls.Add(this.groupBox4);
@@ -1610,6 +1615,15 @@
             this.groupBox8.Size = new System.Drawing.Size(1019, 253);
             this.groupBox8.TabIndex = 711;
             this.groupBox8.TabStop = false;
+            // 
+            // btn_next
+            // 
+            this.btn_next.Location = new System.Drawing.Point(762, 208);
+            this.btn_next.Name = "btn_next";
+            this.btn_next.Size = new System.Drawing.Size(238, 39);
+            this.btn_next.TabIndex = 715;
+            this.btn_next.Text = "NEXT";
+            this.btn_next.UseVisualStyleBackColor = true;
             // 
             // label1_title
             // 
@@ -1645,6 +1659,7 @@
             // 
             // groupBox7_DI
             // 
+            this.groupBox7_DI.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox7_DI.Controls.Add(this.label4);
             this.groupBox7_DI.Controls.Add(this.cb_Xfer1);
             this.groupBox7_DI.Controls.Add(this.cb_Clutch1);
@@ -1677,6 +1692,7 @@
             // 
             // groupBox4_DO
             // 
+            this.groupBox4_DO.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox4_DO.Controls.Add(this.cb_cmdDiO_2_alarm);
             this.groupBox4_DO.Controls.Add(this.cb_cmdDiO_1_led2);
             this.groupBox4_DO.Controls.Add(this.label5);
@@ -1701,20 +1717,12 @@
             this.label5.TabIndex = 714;
             this.label5.Text = "MBIV TX _ SimEyes";
             // 
-            // btn_next
-            // 
-            this.btn_next.Location = new System.Drawing.Point(762, 208);
-            this.btn_next.Name = "btn_next";
-            this.btn_next.Size = new System.Drawing.Size(238, 39);
-            this.btn_next.TabIndex = 715;
-            this.btn_next.Text = "NEXT";
-            this.btn_next.UseVisualStyleBackColor = true;
-            // 
             // AppFormALLinone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2374, 1429);
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ClientSize = new System.Drawing.Size(1461, 1429);
             this.Controls.Add(this.groupBox4_DO);
             this.Controls.Add(this.groupBox7_DI);
             this.Controls.Add(this.groupBox8);
