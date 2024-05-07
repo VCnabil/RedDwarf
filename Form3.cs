@@ -54,13 +54,13 @@ namespace RedDwarf
             switch (argpin)
             {
                 case EnumPins.LatchPin:
-                    lanJackPin = "EIO5";
+                    lanJackPin = "CIO1";
                     break;
                 case EnumPins.DataPin:
-                    lanJackPin = "EIO7";
+                    lanJackPin = "CIO0";
                     break;
                 case EnumPins.ClockPin:
-                    lanJackPin = "EIO6";
+                    lanJackPin = "CIO2";
                     break;
                 default:
                     break;

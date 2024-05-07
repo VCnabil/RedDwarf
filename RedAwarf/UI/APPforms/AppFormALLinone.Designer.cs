@@ -153,6 +153,32 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4_DO = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tkb_DAC0 = new System.Windows.Forms.TrackBar();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cb_EIO4 = new System.Windows.Forms.CheckBox();
+            this.cb_EIO2 = new System.Windows.Forms.CheckBox();
+            this.cb_EIO5 = new System.Windows.Forms.CheckBox();
+            this.cb_EIO3 = new System.Windows.Forms.CheckBox();
+            this.lbl_DAC0 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rb3 = new System.Windows.Forms.RadioButton();
+            this.rb4 = new System.Windows.Forms.RadioButton();
+            this.rb2 = new System.Windows.Forms.RadioButton();
+            this.rb0 = new System.Windows.Forms.RadioButton();
+            this.rb1 = new System.Windows.Forms.RadioButton();
+            this.rb8 = new System.Windows.Forms.RadioButton();
+            this.rb7 = new System.Windows.Forms.RadioButton();
+            this.rb6 = new System.Windows.Forms.RadioButton();
+            this.rb5 = new System.Windows.Forms.RadioButton();
+            this.rb12 = new System.Windows.Forms.RadioButton();
+            this.rb11 = new System.Windows.Forms.RadioButton();
+            this.rb10 = new System.Windows.Forms.RadioButton();
+            this.rb9 = new System.Windows.Forms.RadioButton();
+            this.rb14 = new System.Windows.Forms.RadioButton();
+            this.rb13 = new System.Windows.Forms.RadioButton();
+            this.rb16 = new System.Windows.Forms.RadioButton();
+            this.rb15 = new System.Windows.Forms.RadioButton();
+            this.lbl_chanSelected = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -161,6 +187,9 @@
             this.groupBox8.SuspendLayout();
             this.groupBox7_DI.SuspendLayout();
             this.groupBox4_DO.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tkb_DAC0)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -176,7 +205,7 @@
             // 
             // btn_startTest4DO
             // 
-            this.btn_startTest4DO.Location = new System.Drawing.Point(1199, 60);
+            this.btn_startTest4DO.Location = new System.Drawing.Point(1028, 151);
             this.btn_startTest4DO.Name = "btn_startTest4DO";
             this.btn_startTest4DO.Size = new System.Drawing.Size(162, 37);
             this.btn_startTest4DO.TabIndex = 708;
@@ -423,7 +452,6 @@
             this.lbl_RX.Size = new System.Drawing.Size(36, 25);
             this.lbl_RX.TabIndex = 701;
             this.lbl_RX.Text = "rx:";
-            this.lbl_RX.Visible = false;
             // 
             // lbl_regAIN
             // 
@@ -457,7 +485,8 @@
             // 
             // btn_testFloat
             // 
-            this.btn_testFloat.Location = new System.Drawing.Point(1031, 60);
+            this.btn_testFloat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_testFloat.Location = new System.Drawing.Point(1026, 96);
             this.btn_testFloat.Name = "btn_testFloat";
             this.btn_testFloat.Size = new System.Drawing.Size(162, 38);
             this.btn_testFloat.TabIndex = 697;
@@ -467,7 +496,8 @@
             // 
             // btn_startTest7DI
             // 
-            this.btn_startTest7DI.Location = new System.Drawing.Point(1028, 113);
+            this.btn_startTest7DI.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_startTest7DI.Location = new System.Drawing.Point(1025, 218);
             this.btn_startTest7DI.Name = "btn_startTest7DI";
             this.btn_startTest7DI.Size = new System.Drawing.Size(162, 37);
             this.btn_startTest7DI.TabIndex = 696;
@@ -1717,12 +1747,299 @@
             this.label5.TabIndex = 714;
             this.label5.Text = "MBIV TX _ SimEyes";
             // 
+            // tkb_DAC0
+            // 
+            this.tkb_DAC0.Location = new System.Drawing.Point(1206, 6);
+            this.tkb_DAC0.Maximum = 500;
+            this.tkb_DAC0.Name = "tkb_DAC0";
+            this.tkb_DAC0.Size = new System.Drawing.Size(553, 90);
+            this.tkb_DAC0.TabIndex = 716;
+            this.tkb_DAC0.Value = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cb_EIO4);
+            this.groupBox3.Controls.Add(this.cb_EIO2);
+            this.groupBox3.Controls.Add(this.cb_EIO5);
+            this.groupBox3.Controls.Add(this.cb_EIO3);
+            this.groupBox3.Location = new System.Drawing.Point(1218, 96);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(489, 100);
+            this.groupBox3.TabIndex = 715;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "groupBox3";
+            // 
+            // cb_EIO4
+            // 
+            this.cb_EIO4.AutoSize = true;
+            this.cb_EIO4.Location = new System.Drawing.Point(149, 64);
+            this.cb_EIO4.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_EIO4.Name = "cb_EIO4";
+            this.cb_EIO4.Size = new System.Drawing.Size(91, 29);
+            this.cb_EIO4.TabIndex = 446;
+            this.cb_EIO4.Text = "EIO4";
+            this.cb_EIO4.UseVisualStyleBackColor = true;
+            // 
+            // cb_EIO2
+            // 
+            this.cb_EIO2.AutoSize = true;
+            this.cb_EIO2.Location = new System.Drawing.Point(398, 64);
+            this.cb_EIO2.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_EIO2.Name = "cb_EIO2";
+            this.cb_EIO2.Size = new System.Drawing.Size(91, 29);
+            this.cb_EIO2.TabIndex = 430;
+            this.cb_EIO2.Text = "EIO2";
+            this.cb_EIO2.UseVisualStyleBackColor = true;
+            // 
+            // cb_EIO5
+            // 
+            this.cb_EIO5.AutoSize = true;
+            this.cb_EIO5.Location = new System.Drawing.Point(37, 64);
+            this.cb_EIO5.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_EIO5.Name = "cb_EIO5";
+            this.cb_EIO5.Size = new System.Drawing.Size(91, 29);
+            this.cb_EIO5.TabIndex = 447;
+            this.cb_EIO5.Text = "EIO5";
+            this.cb_EIO5.UseVisualStyleBackColor = true;
+            // 
+            // cb_EIO3
+            // 
+            this.cb_EIO3.AutoSize = true;
+            this.cb_EIO3.Location = new System.Drawing.Point(271, 64);
+            this.cb_EIO3.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_EIO3.Name = "cb_EIO3";
+            this.cb_EIO3.Size = new System.Drawing.Size(91, 29);
+            this.cb_EIO3.TabIndex = 445;
+            this.cb_EIO3.Text = "EIO3";
+            this.cb_EIO3.UseVisualStyleBackColor = true;
+            // 
+            // lbl_DAC0
+            // 
+            this.lbl_DAC0.AutoSize = true;
+            this.lbl_DAC0.Location = new System.Drawing.Point(1026, 9);
+            this.lbl_DAC0.Name = "lbl_DAC0";
+            this.lbl_DAC0.Size = new System.Drawing.Size(70, 25);
+            this.lbl_DAC0.TabIndex = 717;
+            this.lbl_DAC0.Text = "label1";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.rb3);
+            this.groupBox5.Controls.Add(this.rb4);
+            this.groupBox5.Controls.Add(this.rb2);
+            this.groupBox5.Controls.Add(this.rb0);
+            this.groupBox5.Controls.Add(this.rb1);
+            this.groupBox5.Controls.Add(this.rb8);
+            this.groupBox5.Controls.Add(this.rb7);
+            this.groupBox5.Controls.Add(this.rb6);
+            this.groupBox5.Controls.Add(this.rb5);
+            this.groupBox5.Controls.Add(this.rb12);
+            this.groupBox5.Controls.Add(this.rb11);
+            this.groupBox5.Controls.Add(this.rb10);
+            this.groupBox5.Controls.Add(this.rb9);
+            this.groupBox5.Controls.Add(this.rb14);
+            this.groupBox5.Controls.Add(this.rb13);
+            this.groupBox5.Controls.Add(this.rb16);
+            this.groupBox5.Controls.Add(this.rb15);
+            this.groupBox5.Location = new System.Drawing.Point(1399, 292);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(156, 1008);
+            this.groupBox5.TabIndex = 718;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "groupBox5";
+            // 
+            // rb3
+            // 
+            this.rb3.AutoSize = true;
+            this.rb3.Location = new System.Drawing.Point(23, 208);
+            this.rb3.Name = "rb3";
+            this.rb3.Size = new System.Drawing.Size(74, 29);
+            this.rb3.TabIndex = 341;
+            this.rb3.Text = "rb3";
+            this.rb3.UseVisualStyleBackColor = true;
+            // 
+            // rb4
+            // 
+            this.rb4.AutoSize = true;
+            this.rb4.Location = new System.Drawing.Point(23, 261);
+            this.rb4.Name = "rb4";
+            this.rb4.Size = new System.Drawing.Size(74, 29);
+            this.rb4.TabIndex = 340;
+            this.rb4.Text = "rb4";
+            this.rb4.UseVisualStyleBackColor = true;
+            // 
+            // rb2
+            // 
+            this.rb2.AutoSize = true;
+            this.rb2.Location = new System.Drawing.Point(23, 155);
+            this.rb2.Name = "rb2";
+            this.rb2.Size = new System.Drawing.Size(74, 29);
+            this.rb2.TabIndex = 339;
+            this.rb2.Text = "rb2";
+            this.rb2.UseVisualStyleBackColor = true;
+            // 
+            // rb0
+            // 
+            this.rb0.AutoSize = true;
+            this.rb0.Checked = true;
+            this.rb0.Location = new System.Drawing.Point(23, 49);
+            this.rb0.Name = "rb0";
+            this.rb0.Size = new System.Drawing.Size(74, 29);
+            this.rb0.TabIndex = 338;
+            this.rb0.TabStop = true;
+            this.rb0.Text = "rb0";
+            this.rb0.UseVisualStyleBackColor = true;
+            // 
+            // rb1
+            // 
+            this.rb1.AutoSize = true;
+            this.rb1.Location = new System.Drawing.Point(23, 102);
+            this.rb1.Name = "rb1";
+            this.rb1.Size = new System.Drawing.Size(74, 29);
+            this.rb1.TabIndex = 337;
+            this.rb1.Text = "rb1";
+            this.rb1.UseVisualStyleBackColor = true;
+            // 
+            // rb8
+            // 
+            this.rb8.AutoSize = true;
+            this.rb8.Location = new System.Drawing.Point(23, 473);
+            this.rb8.Name = "rb8";
+            this.rb8.Size = new System.Drawing.Size(74, 29);
+            this.rb8.TabIndex = 336;
+            this.rb8.Text = "rb8";
+            this.rb8.UseVisualStyleBackColor = true;
+            // 
+            // rb7
+            // 
+            this.rb7.AutoSize = true;
+            this.rb7.Location = new System.Drawing.Point(23, 420);
+            this.rb7.Name = "rb7";
+            this.rb7.Size = new System.Drawing.Size(74, 29);
+            this.rb7.TabIndex = 335;
+            this.rb7.Text = "rb7";
+            this.rb7.UseVisualStyleBackColor = true;
+            // 
+            // rb6
+            // 
+            this.rb6.AutoSize = true;
+            this.rb6.Location = new System.Drawing.Point(23, 367);
+            this.rb6.Name = "rb6";
+            this.rb6.Size = new System.Drawing.Size(74, 29);
+            this.rb6.TabIndex = 334;
+            this.rb6.Text = "rb6";
+            this.rb6.UseVisualStyleBackColor = true;
+            // 
+            // rb5
+            // 
+            this.rb5.AutoSize = true;
+            this.rb5.Location = new System.Drawing.Point(23, 314);
+            this.rb5.Name = "rb5";
+            this.rb5.Size = new System.Drawing.Size(74, 29);
+            this.rb5.TabIndex = 333;
+            this.rb5.Text = "rb5";
+            this.rb5.UseVisualStyleBackColor = true;
+            // 
+            // rb12
+            // 
+            this.rb12.AutoSize = true;
+            this.rb12.Location = new System.Drawing.Point(17, 685);
+            this.rb12.Name = "rb12";
+            this.rb12.Size = new System.Drawing.Size(86, 29);
+            this.rb12.TabIndex = 332;
+            this.rb12.Text = "rb12";
+            this.rb12.UseVisualStyleBackColor = true;
+            // 
+            // rb11
+            // 
+            this.rb11.AutoSize = true;
+            this.rb11.Location = new System.Drawing.Point(17, 632);
+            this.rb11.Name = "rb11";
+            this.rb11.Size = new System.Drawing.Size(86, 29);
+            this.rb11.TabIndex = 331;
+            this.rb11.Text = "rb11";
+            this.rb11.UseVisualStyleBackColor = true;
+            // 
+            // rb10
+            // 
+            this.rb10.AutoSize = true;
+            this.rb10.Location = new System.Drawing.Point(17, 579);
+            this.rb10.Name = "rb10";
+            this.rb10.Size = new System.Drawing.Size(86, 29);
+            this.rb10.TabIndex = 330;
+            this.rb10.Text = "rb10";
+            this.rb10.UseVisualStyleBackColor = true;
+            // 
+            // rb9
+            // 
+            this.rb9.AutoSize = true;
+            this.rb9.Location = new System.Drawing.Point(23, 526);
+            this.rb9.Name = "rb9";
+            this.rb9.Size = new System.Drawing.Size(74, 29);
+            this.rb9.TabIndex = 329;
+            this.rb9.Text = "rb9";
+            this.rb9.UseVisualStyleBackColor = true;
+            // 
+            // rb14
+            // 
+            this.rb14.AutoSize = true;
+            this.rb14.Location = new System.Drawing.Point(17, 791);
+            this.rb14.Name = "rb14";
+            this.rb14.Size = new System.Drawing.Size(86, 29);
+            this.rb14.TabIndex = 328;
+            this.rb14.Text = "rb14";
+            this.rb14.UseVisualStyleBackColor = true;
+            // 
+            // rb13
+            // 
+            this.rb13.AutoSize = true;
+            this.rb13.Location = new System.Drawing.Point(17, 738);
+            this.rb13.Name = "rb13";
+            this.rb13.Size = new System.Drawing.Size(86, 29);
+            this.rb13.TabIndex = 327;
+            this.rb13.Text = "rb13";
+            this.rb13.UseVisualStyleBackColor = true;
+            // 
+            // rb16
+            // 
+            this.rb16.AutoSize = true;
+            this.rb16.Location = new System.Drawing.Point(17, 897);
+            this.rb16.Name = "rb16";
+            this.rb16.Size = new System.Drawing.Size(86, 29);
+            this.rb16.TabIndex = 326;
+            this.rb16.Text = "rb16";
+            this.rb16.UseVisualStyleBackColor = true;
+            // 
+            // rb15
+            // 
+            this.rb15.AutoSize = true;
+            this.rb15.Location = new System.Drawing.Point(17, 844);
+            this.rb15.Name = "rb15";
+            this.rb15.Size = new System.Drawing.Size(86, 29);
+            this.rb15.TabIndex = 325;
+            this.rb15.Text = "rb15";
+            this.rb15.UseVisualStyleBackColor = true;
+            // 
+            // lbl_chanSelected
+            // 
+            this.lbl_chanSelected.AutoSize = true;
+            this.lbl_chanSelected.Location = new System.Drawing.Point(1394, 263);
+            this.lbl_chanSelected.Name = "lbl_chanSelected";
+            this.lbl_chanSelected.Size = new System.Drawing.Size(70, 25);
+            this.lbl_chanSelected.TabIndex = 719;
+            this.lbl_chanSelected.Text = "label1";
+            // 
             // AppFormALLinone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(1461, 1429);
+            this.ClientSize = new System.Drawing.Size(3063, 1429);
+            this.Controls.Add(this.lbl_chanSelected);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.lbl_DAC0);
+            this.Controls.Add(this.tkb_DAC0);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4_DO);
             this.Controls.Add(this.groupBox7_DI);
             this.Controls.Add(this.groupBox8);
@@ -1751,6 +2068,11 @@
             this.groupBox7_DI.PerformLayout();
             this.groupBox4_DO.ResumeLayout(false);
             this.groupBox4_DO.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tkb_DAC0)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1882,5 +2204,31 @@
         private System.Windows.Forms.GroupBox groupBox4_DO;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_next;
+        private System.Windows.Forms.TrackBar tkb_DAC0;
+        private System.Windows.Forms.GroupBox groupBox3;
+        internal System.Windows.Forms.CheckBox cb_EIO4;
+        internal System.Windows.Forms.CheckBox cb_EIO2;
+        internal System.Windows.Forms.CheckBox cb_EIO5;
+        internal System.Windows.Forms.CheckBox cb_EIO3;
+        private System.Windows.Forms.Label lbl_DAC0;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton rb3;
+        private System.Windows.Forms.RadioButton rb4;
+        private System.Windows.Forms.RadioButton rb2;
+        private System.Windows.Forms.RadioButton rb0;
+        private System.Windows.Forms.RadioButton rb1;
+        private System.Windows.Forms.RadioButton rb8;
+        private System.Windows.Forms.RadioButton rb7;
+        private System.Windows.Forms.RadioButton rb6;
+        private System.Windows.Forms.RadioButton rb5;
+        private System.Windows.Forms.RadioButton rb12;
+        private System.Windows.Forms.RadioButton rb11;
+        private System.Windows.Forms.RadioButton rb10;
+        private System.Windows.Forms.RadioButton rb9;
+        private System.Windows.Forms.RadioButton rb14;
+        private System.Windows.Forms.RadioButton rb13;
+        private System.Windows.Forms.RadioButton rb16;
+        private System.Windows.Forms.RadioButton rb15;
+        private System.Windows.Forms.Label lbl_chanSelected;
     }
 }

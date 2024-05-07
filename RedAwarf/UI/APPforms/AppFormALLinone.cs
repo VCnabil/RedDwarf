@@ -435,6 +435,113 @@ namespace RedDwarf.RedAwarf.UI.APPforms
 
         private void timer_100_Tick(object sender, EventArgs e)
         {
+            double val = tkb_DAC0.Value;
+            double Converted = val / 100;
+            lbl_DAC0.Text = "DAC0: " + Converted.ToString();
+            string argChan = "ch 0";
+            int argchannum = 0;
+            if (rb0.Checked)
+            {
+                argChan = "ch 0";
+                argchannum = 0;
+            }
+            else
+            if (rb1.Checked) {
+                argChan = "ch 1";
+                argchannum = 1;
+            }
+            else
+            if (rb2.Checked)
+            {
+                argChan = "ch 2";
+                argchannum = 2;
+            }
+            else
+            if (rb3.Checked)
+            {
+                argChan = "ch 3";
+                argchannum = 3;
+            }
+            else
+            if (rb4.Checked)
+            {
+                argChan = "ch 4";
+                argchannum = 4;
+            }
+            else
+            if (rb5.Checked)
+            {
+                argChan = "ch 5";
+                argchannum = 5;
+            }
+            else
+            if (rb6.Checked)
+            {
+                argChan = "ch 6";
+                argchannum = 6;
+            }
+            else
+            if (rb7.Checked)
+            {
+                argChan = "ch 7";
+                argchannum = 7;
+            }
+            else
+            if (rb8.Checked)
+            {
+                argChan = "ch 8";
+                argchannum = 8;
+            }
+            else
+            if (rb9.Checked)
+            {
+                argChan = "ch 9";
+                argchannum = 9;
+            }
+            else
+            if (rb10.Checked)
+            {
+                argChan = "ch 10";
+                argchannum = 10;
+            }
+            else
+            if (rb11.Checked)
+            {
+                argChan = "ch 11";
+                argchannum = 11;
+            }
+            else
+            if (rb12.Checked)
+            {
+                argChan = "ch 12";
+                argchannum = 12;
+            }
+            else
+            if (rb13.Checked)
+            {
+                argChan = "ch 13";
+                argchannum = 13;
+            }
+            else
+            if (rb14.Checked)
+            {
+                argChan = "ch 14";
+                argchannum = 14;
+            }
+            else
+            if (rb15.Checked)
+            {
+                argChan = "ch 15";
+                argchannum = 15;
+            }
+            else
+            if (rb16.Checked)
+            {
+                argChan = "ch 16";
+                argchannum = 16;
+            }
+
+            lbl_chanSelected.Text = argChan;
 
             if (is_cycling)
             {
@@ -449,7 +556,8 @@ namespace RedDwarf.RedAwarf.UI.APPforms
                     }
                     else
                     {
-                        _lbls_ADOs[i].Text = "";
+                        _lbls_ADOs[i].Text = "-" + i + ": " + _ints_ADOS[i].ToString();
+                        // _lbls_ADOs[i].Text = "";
                         _lbls_ADOs[i].Font = new Font(_lbls_ADOs[i].Font, FontStyle.Regular);
                     }
                 }
@@ -459,7 +567,7 @@ namespace RedDwarf.RedAwarf.UI.APPforms
 
                 for (int i = 1; i < 17; i++)
                 {
-                    _lbls_ADOs[i].Text = "o" + i + ": " + _ints_ADOS[i].ToString();
+                    _lbls_ADOs[i].Text = ". " + i + ": " + _ints_ADOS[i].ToString();
                     _lbls_ADOs[i].Font = new Font(_lbls_ADOs[i].Font, FontStyle.Regular);
 
                 }
@@ -471,7 +579,7 @@ namespace RedDwarf.RedAwarf.UI.APPforms
             _DATA_TX.SetDIO(cb_cmdDiO_0_led1.Checked,  cb_cmdDiO_1_led2.Checked, cb_cmdDiO_2_alarm.Checked, true);
             MNGR_COMMBIV.Instance.WriteData__MBIV(_DATA_TX);
 
-            MNGR_COMMBIV.Instance.WRITEDATA_FIO(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
+            MNGR_COMMBIV.Instance.WRITEDATA_EIOsXferDKclu(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
 
 
             _MAINLabjackObj = MNGR_COMMBIV.Instance.READDATA____JACK();
@@ -583,7 +691,7 @@ namespace RedDwarf.RedAwarf.UI.APPforms
             cb_DK2CMD.Checked = true;
             cb_CL1CMD.Checked = true;
             cb_CL2CMD.Checked = true;
-            MNGR_COMMBIV.Instance.WRITEDATA_FIO(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
+            MNGR_COMMBIV.Instance.WRITEDATA_EIOsXferDKclu(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
             await Task.Delay(WaitToTakeEffect);
 
             //set led1 led2 alarm to on 

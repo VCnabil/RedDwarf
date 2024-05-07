@@ -62,24 +62,24 @@ namespace RedDwarf.RedAwarf._Globalz
             get { return _num_MUXDAC_enries; }
             private set { _num_MUXDAC_enries = value; }
         }
-        public string[] MUXDAC_names;
-        public double[] MUXDAC_values;
+        public string[] MUXDAC_names_withFIOS;
+        public double[] MUXDAC_values_WithFIOS;
         #endregion
         bool muxbit0 = true;
         bool muxbit1 = true;
         bool muxbit2 = true;
         bool muxbit3 = true;
         double _RAW_DACTOSEND = 0.0;
-        #region FIO for digital inputs xfer dk clutch
-        const int ConstFIOs = 6;
-        int _num_FIOs = 6;
-        public int Num_FIOs
+        #region EIO for digital inputs xfer dk clutch
+        const int ConstEIOs_forXferDkCLu = 6;
+        int _num_EIOForXferDKCLU = 6;
+        public int Num_EIOs_ForXferDKCLU
         {
-            get { return _num_FIOs; }
-            private set { _num_FIOs = value; }
+            get { return _num_EIOForXferDKCLU; }
+            private set { _num_EIOForXferDKCLU = value; }
         }
-        public string[] FIOs_names;
-        public double[] FIOs_values;
+        public string[] EIOs_names_forXferDKCLU;
+        public double[] EIOs_values_forXferDKCLU;
         #endregion
         double xfer1Val = 0;
         double xfer2Val = 0;
@@ -381,43 +381,43 @@ namespace RedDwarf.RedAwarf._Globalz
 
             #region MUXDAC init
             _num_MUXDAC_enries = Const_MUX_Entries;
-            MUXDAC_names = new string[Const_MUX_Entries];
-            MUXDAC_names[0] = "EIO2";
-            MUXDAC_names[1] = "EIO3";
-            MUXDAC_names[2] = "EIO4";
-            MUXDAC_names[3] = "EIO5";
-            MUXDAC_names[4] = "DAC0";
-            MUXDAC_values = new double[Const_MUX_Entries];
-            MUXDAC_values[0] = 0;
-            MUXDAC_values[1] = 0;
-            MUXDAC_values[2] = 0;
-            MUXDAC_values[3] = 0;
-            MUXDAC_values[4] = 0;
+            MUXDAC_names_withFIOS = new string[Const_MUX_Entries];
+            MUXDAC_names_withFIOS[0] = "FIO2";
+            MUXDAC_names_withFIOS[1] = "FIO3";
+            MUXDAC_names_withFIOS[2] = "FIO4";
+            MUXDAC_names_withFIOS[3] = "FIO5";
+            MUXDAC_names_withFIOS[4] = "DAC0";
+            MUXDAC_values_WithFIOS = new double[Const_MUX_Entries];
+            MUXDAC_values_WithFIOS[0] = 0;
+            MUXDAC_values_WithFIOS[1] = 0;
+            MUXDAC_values_WithFIOS[2] = 0;
+            MUXDAC_values_WithFIOS[3] = 0;
+            MUXDAC_values_WithFIOS[4] = 0;
             #endregion
 
 
             #region FIOs init
-            _num_FIOs = ConstFIOs;
-            FIOs_names = new string[ConstFIOs];
-            FIOs_names[0] = "FIO0";
-            FIOs_names[1] = "FIO1";
-            FIOs_names[2] = "FIO2";
-            FIOs_names[3] = "FIO3";
-            FIOs_names[4] = "FIO4";
-            FIOs_names[5] = "FIO5";
-            FIOs_values = new double[ConstFIOs];
-            FIOs_values[0] = 0;
-            FIOs_values[1] = 0;
-            FIOs_values[2] = 0;
-            FIOs_values[3] = 0;
-            FIOs_values[4] = 0;
-            FIOs_values[5] = 0;
+            _num_EIOForXferDKCLU = ConstEIOs_forXferDkCLu;
+            EIOs_names_forXferDKCLU = new string[ConstEIOs_forXferDkCLu];
+            EIOs_names_forXferDKCLU[0] = "EIO2";
+            EIOs_names_forXferDKCLU[1] = "EIO3";
+            EIOs_names_forXferDKCLU[2] = "EIO4";
+            EIOs_names_forXferDKCLU[3] = "EIO5";
+            EIOs_names_forXferDKCLU[4] = "EIO6";
+            EIOs_names_forXferDKCLU[5] = "EIO7";
+            EIOs_values_forXferDKCLU = new double[ConstEIOs_forXferDkCLu];
+            EIOs_values_forXferDKCLU[0] = 0;
+            EIOs_values_forXferDKCLU[1] = 0;
+            EIOs_values_forXferDKCLU[2] = 0;
+            EIOs_values_forXferDKCLU[3] = 0;
+            EIOs_values_forXferDKCLU[4] = 0;
+            EIOs_values_forXferDKCLU[5] = 0;
             #endregion
 
             #region AINs init
             _num_AINs = ConstAINs;
             AINs_names = new string[ConstAINs];
-            AINs_names[0] = "AIN0"; //alarm 
+            AINs_names[0] = "AIN13"; //alarm 
             AINs_names[1] = "AIN1";
             AINs_names[2] = "EIO0"; //led1
             AINs_names[3] = "EIO1"; //led2
@@ -556,11 +556,11 @@ namespace RedDwarf.RedAwarf._Globalz
 
             _RAW_DACTOSEND = argDACValue;
 
-            MUXDAC_values[0] = muxbit0 ? 0 : 1;
-            MUXDAC_values[1] = muxbit1 ? 0 : 1;
-            MUXDAC_values[2] = muxbit2 ? 0 : 1;
-            MUXDAC_values[3] = muxbit3 ? 0 : 1;
-            MUXDAC_values[4] = _RAW_DACTOSEND;
+            MUXDAC_values_WithFIOS[0] = muxbit0 ? 1 : 0;
+            MUXDAC_values_WithFIOS[1] = muxbit1 ? 1 : 0;
+            MUXDAC_values_WithFIOS[2] = muxbit2 ? 1 : 0;
+            MUXDAC_values_WithFIOS[3] = muxbit3 ? 1 : 0;
+            MUXDAC_values_WithFIOS[4] = _RAW_DACTOSEND;
 
             if (!isOnBus )
             {
@@ -568,7 +568,7 @@ namespace RedDwarf.RedAwarf._Globalz
             }
 
             int errorAddress1 = 0;
-            LJM.eWriteNames(handle, Num_MUXDAC_enries, MUXDAC_names, MUXDAC_values, ref errorAddress1);
+            LJM.eWriteNames(handle, Num_MUXDAC_enries, MUXDAC_names_withFIOS, MUXDAC_values_WithFIOS, ref errorAddress1);
 
         }
 
@@ -712,11 +712,11 @@ namespace RedDwarf.RedAwarf._Globalz
                     break;
             }
 
-            MUXDAC_values[0] = muxbit0 ? 0 : 1;
-            MUXDAC_values[1] = muxbit1 ? 0 : 1;
-            MUXDAC_values[2] = muxbit2 ? 0 : 1;
-            MUXDAC_values[3] = muxbit3 ? 0 : 1;
-            MUXDAC_values[4] = _RAW_DACTOSEND;
+            MUXDAC_values_WithFIOS[0] = muxbit0 ? 1 : 0;
+            MUXDAC_values_WithFIOS[1] = muxbit1 ? 1 : 0;
+            MUXDAC_values_WithFIOS[2] = muxbit2 ? 1 : 0;
+            MUXDAC_values_WithFIOS[3] = muxbit3 ? 1 : 0;
+            MUXDAC_values_WithFIOS[4] = _RAW_DACTOSEND;
 
             if (!isOnBus)
             {
@@ -724,11 +724,11 @@ namespace RedDwarf.RedAwarf._Globalz
             }
 
             int errorAddress1 = 0;
-            LJM.eWriteNames(handle, Num_MUXDAC_enries, MUXDAC_names, MUXDAC_values, ref errorAddress1);
+            LJM.eWriteNames(handle, Num_MUXDAC_enries, MUXDAC_names_withFIOS, MUXDAC_values_WithFIOS, ref errorAddress1);
 
         }
         //*****************************************************************************************************************tWrting FIO values to the LabJack will be read later by the MBIV and found in the MessageReceived
-        public void WRITEDATA_FIO(bool argXfer1, bool argXfer2, bool argDK1, bool argDk2, bool argClu1, bool argClu2)
+        public void WRITEDATA_EIOsXferDKclu(bool argXfer1, bool argXfer2, bool argDK1, bool argDk2, bool argClu1, bool argClu2)
         {
             xfer1Val = argXfer1 ? 1 : 0;
             xfer2Val = argXfer2 ? 1 : 0;
@@ -737,12 +737,12 @@ namespace RedDwarf.RedAwarf._Globalz
             clutch1Va = argClu1 ? 1 : 0;
             clutch2Val = argClu2 ? 1 : 0;
 
-            FIOs_values[0] = xfer1Val;
-            FIOs_values[1] = xfer2Val;
-            FIOs_values[2] = dktr1Val;
-            FIOs_values[3] = dktr2Val;
-            FIOs_values[4] = clutch1Va;
-            FIOs_values[5] = clutch2Val;
+            EIOs_values_forXferDKCLU[0] = xfer1Val;
+            EIOs_values_forXferDKCLU[1] = xfer2Val;
+            EIOs_values_forXferDKCLU[2] = dktr1Val;
+            EIOs_values_forXferDKCLU[3] = dktr2Val;
+            EIOs_values_forXferDKCLU[4] = clutch1Va;
+            EIOs_values_forXferDKCLU[5] = clutch2Val;
                 
 
             
@@ -752,7 +752,7 @@ namespace RedDwarf.RedAwarf._Globalz
             }
 
             int errorAddress1 = 0;
-            LJM.eWriteNames(handle, Num_FIOs, FIOs_names, FIOs_values, ref errorAddress1);
+            LJM.eWriteNames(handle, Num_EIOs_ForXferDKCLU, EIOs_names_forXferDKCLU, EIOs_values_forXferDKCLU, ref errorAddress1);
 
         }
 

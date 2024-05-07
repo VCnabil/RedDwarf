@@ -126,7 +126,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
 
         }
         private async Task startTest4D (){
-            MNGR_COMMBIV.Instance.WRITEDATA_FIO(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
+            MNGR_COMMBIV.Instance.WRITEDATA_EIOsXferDKclu(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
 
             await Task.Delay(WAIT_DIO_EFFECT);
 
@@ -179,7 +179,7 @@ namespace RedDwarf.RedAwarf.UI.SectionsPages
         {
 
 
-            MNGR_COMMBIV.Instance.WRITEDATA_FIO(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
+            MNGR_COMMBIV.Instance.WRITEDATA_EIOsXferDKclu(cb_xfer1CMD.Checked, cb_xfer2CMD.Checked, cb_DK1CMD.Checked, cb_DK2CMD.Checked, cb_CL1CMD.Checked, cb_CL2CMD.Checked);
 
             await Task.Delay(WAIT_DIO_EFFECT);
 
