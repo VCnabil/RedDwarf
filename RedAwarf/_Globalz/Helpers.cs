@@ -98,10 +98,10 @@ namespace RedDwarf.RedAwarf._Globalz
             return _maxlvls;
         }
 
-        public static int intervalTicks = 150;
+        public static int intervalTicks = 240;
         public static int WaitToTakeEffect = 310;
         public static int WAIT_DIO_EFFECT = 4000;
-        public static int targetSamples = 14;
+        public static int targetSamples = 5;
 
         static bool _doMaual = true;
         public static bool DOManual { 

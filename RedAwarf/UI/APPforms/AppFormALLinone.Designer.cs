@@ -1755,6 +1755,7 @@
             this.tkb_DAC0.Size = new System.Drawing.Size(553, 90);
             this.tkb_DAC0.TabIndex = 716;
             this.tkb_DAC0.Value = 1;
+            this.tkb_DAC0.Visible = false;
             // 
             // groupBox3
             // 
@@ -1768,6 +1769,7 @@
             this.groupBox3.TabIndex = 715;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "groupBox3";
+            this.groupBox3.Visible = false;
             // 
             // cb_EIO4
             // 
@@ -1821,6 +1823,7 @@
             this.lbl_DAC0.Size = new System.Drawing.Size(70, 25);
             this.lbl_DAC0.TabIndex = 717;
             this.lbl_DAC0.Text = "label1";
+            this.lbl_DAC0.Visible = false;
             // 
             // groupBox5
             // 
@@ -1847,6 +1850,7 @@
             this.groupBox5.TabIndex = 718;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "groupBox5";
+            this.groupBox5.Visible = false;
             // 
             // rb3
             // 
@@ -2028,13 +2032,14 @@
             this.lbl_chanSelected.Size = new System.Drawing.Size(70, 25);
             this.lbl_chanSelected.TabIndex = 719;
             this.lbl_chanSelected.Text = "label1";
+            this.lbl_chanSelected.Visible = false;
             // 
             // AppFormALLinone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(3063, 1429);
+            this.ClientSize = new System.Drawing.Size(1864, 1429);
             this.Controls.Add(this.lbl_chanSelected);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.lbl_DAC0);
