@@ -59,11 +59,24 @@ namespace RedDwarf.RedAwarf.UI.APPforms
             group_RESULTS_DI7.Hide();
 
             btn_ToTestForm.Click += OpenTestForm;
+            btn_ToTestForm3.Click += Btn_ToTestForm3_Click;
+            btn_ToTempEnginOutForm.Click += Btn_ToTempEnginOutForm_Click;
 
         
         }
 
- 
+        private void Btn_ToTempEnginOutForm_Click(object sender, EventArgs e)
+        {
+            AppFormTempEngins appFormTempEngins = new AppFormTempEngins();
+            appFormTempEngins.Show();
+        }
+
+        private void Btn_ToTestForm3_Click(object sender, EventArgs e)
+        {
+             Form3 form3 = new Form3();
+            form3.Show();
+
+        }
 
         private void OpenTestForm(object sender, EventArgs e)
         {

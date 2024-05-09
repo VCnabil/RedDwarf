@@ -103,7 +103,7 @@ namespace RedDwarf.RedAwarf._Globalz
 
         private DateTime lastReceivedTime = DateTime.MinValue;
         private MNGR_COMMBIV() {
-            INIT_CONSTRUCTOR_COMM();
+           INIT_CONSTRUCTOR_COMM();
            // INIT_CON_LABJACK();
         }
 
@@ -252,7 +252,7 @@ namespace RedDwarf.RedAwarf._Globalz
                         if (!_FirstMessgeWasRead) {
                             _FirstMessgeWasRead= true;
                             OnFirstMEssageWasReceived(_foundMBIV_softwareVersion);
-                            INIT_CON_LABJACK();
+                           // INIT_CON_LABJACK();
                         }
 
                       
@@ -348,6 +348,189 @@ namespace RedDwarf.RedAwarf._Globalz
         }
 
 
+        bool[] _virtualRellayArray = new bool[16];
+
+        byte[] dataArrayRED;
+        byte[] dataArrayGREEN;
+        enum EnumPins
+        {
+
+            None = 0,
+            LatchPin = 1,
+            DataPin = 2,
+            ClockPin = 3
+        }
+        byte _lowByte = 0x00;
+        byte _highByte = 0x00;
+        void digitalWrite(EnumPins argpin, int state)
+        {
+
+            string lanJackPin = "";
+            switch (argpin)
+            {
+                case EnumPins.LatchPin:
+                    lanJackPin = "CIO1";
+                    break;
+                case EnumPins.DataPin:
+                    lanJackPin = "CIO0";
+                    break;
+                case EnumPins.ClockPin:
+                    lanJackPin = "CIO2";
+                    break;
+                default:
+                    break;
+            }
+
+            LJM.eWriteName(handle, lanJackPin, state);
+
+        }
+        private void UpdateDisplay()
+        {
+            // Assume EnumPins.DataPin and EnumPins.ClockPin are defined elsewhere correctly
+            digitalWrite(EnumPins.LatchPin, 0);  // Prepare latch
+            shiftOut(_lowByte);  // Output green data
+            shiftOut(_highByte);    // Output red data
+            digitalWrite(EnumPins.LatchPin, 1);  // Latch data
+        }
+
+        void Update_virtualRellaystate(byte argLwbute, byte argHbyte)
+        {
+            // Update the first 8 bits using the low byte
+            for (int i = 0; i < 8; i++)
+            {
+                _virtualRellayArray[i] = (argLwbute & (1 << i)) != 0;
+            }
+
+            // Update the second 8 bits using the high byte
+            for (int i = 0; i < 8; i++)
+            {
+                _virtualRellayArray[8 + i] = (argHbyte & (1 << i)) != 0;
+            }
+
+        }       
+        void shiftOut(byte myDataOut)
+        {
+            for (int bitIndex = 7; bitIndex >= 0; bitIndex--)
+            {
+                int pinState = ((myDataOut & (1 << bitIndex)) != 0) ? 1 : 0;
+                digitalWrite(EnumPins.DataPin, pinState);
+                digitalWrite(EnumPins.ClockPin, 1);  // Clock high: shift in the bit
+                digitalWrite(EnumPins.DataPin, 0);   // Reset data pin
+                digitalWrite(EnumPins.ClockPin, 0);  // Clock low: prepare for next bit
+            }
+        }
+        public void RELAYARRAY_SET(byte arg_lowb, byte arg_highb) {
+            Update_virtualRellaystate(arg_lowb, arg_highb);
+            digitalWrite(EnumPins.LatchPin, 0);
+            shiftOut(arg_lowb);
+            shiftOut(arg_highb);
+            digitalWrite(EnumPins.LatchPin, 1);
+        }
+
+        public void turnonAllRelays()
+        {
+            RELAYARRAY_SET(0x00, 0x00);
+        }   
+        public void turnoffAllRelays()
+        {
+            RELAYARRAY_SET(0xFF, 0xFF);
+        }
+
+        public void OpenMainPowerSource()
+        {
+            LJM.eWriteName(handle, "CIO3", 1);
+        }
+        public void CloseMainPowerSource()
+        {
+            LJM.eWriteName(handle, "CIO3", 0);
+        }
+
+        public void RelayBlock_powerOn()
+        {
+            LJM.eWriteName(handle, "FIO6", 1);
+        }
+        public void RelayBlock_powerOff()
+        {
+            LJM.eWriteName(handle, "FIO6", 0);
+        }
+        public void SetDAC1_toHIgh() {
+            
+            LJM.eWriteName(handle, "DAC1", 5.0);
+        }
+
+        public void SetDAC1_toLow()
+        {
+            LJM.eWriteName(handle, "DAC1", 0.0);
+        }
+
+        public double Get_Value_AIN0() {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN0", ref _temVal);
+            return _temVal;
+        }
+
+        public double Get_Value_AIN1()
+        {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN1", ref _temVal);
+            return _temVal;
+        }
+
+        //holds PI value
+        public double Get_Value_AIN2()
+        {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN2", ref _temVal);
+            return _temVal;
+        }
+        //holds SI value
+        public double Get_Value_AIN3()
+        {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN3", ref _temVal);
+            return _temVal;
+        }
+        //holds PB value
+        public double Get_Value_AIN4()
+        {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN4", ref _temVal);
+            return _temVal;
+        }
+        //holds PN value
+        public double Get_Value_AIN5()
+        {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN5", ref _temVal);
+            return _temVal;
+        }
+        //holds SB value
+        public double Get_Value_AIN6()
+        {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN6", ref _temVal);
+            return _temVal;
+        }
+        //holds SN value
+        public double Get_Value_AIN7()
+        {
+
+            double _temVal = 0;
+            LJM.eReadName(handle, "AIN7", ref _temVal);
+            return _temVal;
+        }
+
+
+
+
+
         //---------------------------------------------------------LABJACK
         public void INIT_CON_LABJACK() {
             if (isOnBus) return;
@@ -429,6 +612,55 @@ namespace RedDwarf.RedAwarf._Globalz
             AINs_values[3] = 0;
 
             #endregion
+
+            dataArrayRED = new byte[10];
+            dataArrayGREEN = new byte[10];
+
+            dataArrayRED[0] = 0xFF; //11111111
+            dataArrayRED[1] = 0xFE; //11111110
+            dataArrayRED[2] = 0xFC; //11111100
+            dataArrayRED[3] = 0xF8; //11111000
+            dataArrayRED[4] = 0xF0; //11110000
+            dataArrayRED[5] = 0xE0; //11100000
+            dataArrayRED[6] = 0xC0; //11000000
+            dataArrayRED[7] = 0x80; //10000000
+            dataArrayRED[8] = 0x00; //00000000
+            dataArrayRED[9] = 0xE0; //11100000
+                                    //Arduino doesn't seem to have a way to write binary straight into the code
+                                    //so these values are in HEX.  Decimal would have been fine, too.
+                                    //dataArrayGREEN[0] = 0xFF; //11111111
+                                    //dataArrayGREEN[1] = 0x7F; //01111111
+                                    //dataArrayGREEN[2] = 0x3F; //00111111
+                                    //dataArrayGREEN[3] = 0x1F; //00011111
+                                    //dataArrayGREEN[4] = 0x0F; //00001111
+                                    //dataArrayGREEN[5] = 0x07; //00000111
+                                    //dataArrayGREEN[6] = 0x03; //00000011
+                                    //dataArrayGREEN[7] = 0x01; //00000001
+                                    //dataArrayGREEN[8] = 0x00; //00000000
+                                    //dataArrayGREEN[9] = 0x07; //00000000
+
+            for (int i = 0; i < 10; i++)
+            {
+                dataArrayGREEN[i] = (byte)(0xFF);
+            }
+
+            //DIO_INHIBIT, DIO_DIRECTION, DIO_STATE
+            // DIO_INHIBIT =   111111000011 0x3FC
+            // DIO_DIRECTION = 111111111100 0x3FF
+            // DIO_STATE =     111111111100 0x3FF
+            string[] Configstrings = new string[3] { " DIO_INHIBIT", "DIO_DIRECTION", "DIO_STATE" };
+            //double[] stringvaluesValues = new double[3] { 0, 0, 0 };
+            //LJM.eWriteName(handle, "DIO_INHIBIT", 0x3FC);
+            //LJM.eWriteName(handle, "DIO_DIRECTION", 0x3FF);
+            //double[] statesFIOS = new double[4] { 0, 0, 0, 0 };
+            //LJM.eReadNames(handle, 4, new string[4] { "FIO2", "FIO3", "FIO4", "FIO5" }, statesFIOS, ref errorAddress);
+
+            double tempstes = 0;
+            //LJM.eReadName(handle, "FIO2", ref tempstes);
+            //LJM.eReadName(handle, "FIO3", ref tempstes);
+            //LJM.eReadName(handle, "FIO4", ref tempstes);
+            //LJM.eReadName(handle, "FIO5", ref tempstes);
+            //LJM.eWriteNames(handle, 3, Configstrings, new double[3] { 0x3FC, 0x3FF, 0x3FF }, ref errorAddress);
         }
 
         //*****************************************************************************************************************tWriting MuxDAC values to the LabJack will be read later by the MBIV and found in the MessageReceived 

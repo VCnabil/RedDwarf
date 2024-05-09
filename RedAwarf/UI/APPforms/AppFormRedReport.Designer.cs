@@ -183,6 +183,8 @@
             this.lbl_passfail_dk1 = new System.Windows.Forms.Label();
             this.lbl_passfail_dk2 = new System.Windows.Forms.Label();
             this.btn_Print = new System.Windows.Forms.Button();
+            this.btn_ToTestForm3 = new System.Windows.Forms.Button();
+            this.btn_ToTempEnginOutForm = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -632,7 +634,7 @@
             this.groupBox2.Controls.Add(this.rb_canNOTberepaired);
             this.groupBox2.Controls.Add(this.rb_fitToInstall);
             this.groupBox2.Controls.Add(this.rb_canbeRepaired);
-            this.groupBox2.Location = new System.Drawing.Point(911, 256);
+            this.groupBox2.Location = new System.Drawing.Point(911, 392);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(330, 231);
             this.groupBox2.TabIndex = 41;
@@ -689,7 +691,7 @@
             this.btn_ToTestForm.Name = "btn_ToTestForm";
             this.btn_ToTestForm.Size = new System.Drawing.Size(322, 77);
             this.btn_ToTestForm.TabIndex = 45;
-            this.btn_ToTestForm.Text = "START TEST";
+            this.btn_ToTestForm.Text = "START TEST P2 (Analogue-Digital I/O)";
             this.btn_ToTestForm.UseVisualStyleBackColor = true;
             // 
             // group_RESULTS_AIN3
@@ -1982,18 +1984,38 @@
             // 
             // btn_Print
             // 
-            this.btn_Print.Location = new System.Drawing.Point(919, 120);
+            this.btn_Print.Location = new System.Drawing.Point(919, 256);
             this.btn_Print.Name = "btn_Print";
             this.btn_Print.Size = new System.Drawing.Size(322, 77);
             this.btn_Print.TabIndex = 726;
             this.btn_Print.Text = "PRINT TEST";
             this.btn_Print.UseVisualStyleBackColor = true;
             // 
+            // btn_ToTestForm3
+            // 
+            this.btn_ToTestForm3.Location = new System.Drawing.Point(911, 647);
+            this.btn_ToTestForm3.Name = "btn_ToTestForm3";
+            this.btn_ToTestForm3.Size = new System.Drawing.Size(322, 77);
+            this.btn_ToTestForm3.TabIndex = 727;
+            this.btn_ToTestForm3.Text = "START Rellays TEST";
+            this.btn_ToTestForm3.UseVisualStyleBackColor = true;
+            // 
+            // btn_ToTempEnginOutForm
+            // 
+            this.btn_ToTempEnginOutForm.Location = new System.Drawing.Point(919, 127);
+            this.btn_ToTempEnginOutForm.Name = "btn_ToTempEnginOutForm";
+            this.btn_ToTempEnginOutForm.Size = new System.Drawing.Size(322, 77);
+            this.btn_ToTempEnginOutForm.TabIndex = 728;
+            this.btn_ToTempEnginOutForm.Text = "                START TEST P1         ( temp Engin Ouputs)";
+            this.btn_ToTempEnginOutForm.UseVisualStyleBackColor = true;
+            // 
             // AppFormRedReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2374, 1429);
+            this.Controls.Add(this.btn_ToTempEnginOutForm);
+            this.Controls.Add(this.btn_ToTestForm3);
             this.Controls.Add(this.btn_Print);
             this.Controls.Add(this.group_RESULTS_DI7);
             this.Controls.Add(this.group_RESULTS_DO4);
@@ -2185,5 +2207,7 @@
         private System.Windows.Forms.Label lbl_passfail_dk1;
         private System.Windows.Forms.Label lbl_passfail_dk2;
         private System.Windows.Forms.Button btn_Print;
+        private System.Windows.Forms.Button btn_ToTestForm3;
+        private System.Windows.Forms.Button btn_ToTempEnginOutForm;
     }
 }

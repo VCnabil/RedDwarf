@@ -19,7 +19,7 @@ namespace RedDwarf
         byte dataGREEN;
         byte[] dataArrayRED;
         byte[] dataArrayGREEN;
-        int i, j;
+      //  int i, j;
         enum EnumPins
         {
 
